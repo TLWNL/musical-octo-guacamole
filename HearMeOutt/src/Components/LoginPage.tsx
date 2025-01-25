@@ -16,10 +16,51 @@ const LoginPage = () => {
         "Gebruikers kunnen inloggen met een email adres en wachtwoord, of met Google",
     },
   ];
+  const simulateUserInput = () => {
+    console.log("check");
+    const emailField = document.getElementById(
+      "formBasicEmail"
+    ) as HTMLInputElement;
+    const passwordField = document.getElementById(
+      "formBasicPassword"
+    ) as HTMLInputElement;
 
+    if (emailField && passwordField) {
+      // Function to simulate typing
+      const typeText = (
+        element: HTMLInputElement,
+        text: string,
+        callback: () => void
+      ) => {
+        let i = 0;
+        const interval = setInterval(() => {
+          element.value = text.slice(0, i + 1);
+          element.dispatchEvent(new Event("change", { bubbles: true }));
+          i++;
+
+          if (i === text.length) {
+            clearInterval(interval);
+            callback(); // Call callback once typing is finished
+          }
+        }, 100); // Adjust typing speed by changing the interval time (in milliseconds)
+      };
+
+      // Typing animation for both fields
+      typeText(emailField, "user@example.com", () => {
+        typeText(passwordField, "password123", () => {
+          console.log("Both fields have been typed!");
+        });
+      });
+    } else {
+      console.log("Fields not found");
+    }
+  };
   const [run, setRun] = useState(true);
   const handleJoyrideCallback = (data: CallBackProps) => {
-    const { status } = data;
+    const { status, step } = data;
+    if (step.target === ".form-email" && status === STATUS.RUNNING) {
+      simulateUserInput();
+    }
     if (status === STATUS.FINISHED || status === STATUS.SKIPPED) {
       setRun(false);
     }
