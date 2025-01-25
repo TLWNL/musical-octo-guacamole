@@ -19,11 +19,11 @@ const LoginPage = () => {
             className="d-flex justify-content-center align-items-center"
           >
             <Form style={{ width: "100%", maxWidth: "400px" }}>
-              <Image src="https://picsum.photos/300/200" />
+              <Image src="https://picsum.photos/300/200" className="mb-2" />
               <h1>Welkom</h1>
 
               <p className="text-center">
-                Welcome to our platform. Please log in to continue.
+                Welkom bij HearMeOutt. Log in om verder te gaan.
               </p>
               <h2 className="mb-4 text-center">Login</h2>
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -39,10 +39,13 @@ const LoginPage = () => {
               <Button variant="primary" type="submit" className="w-100">
                 Login
               </Button>
+              <Button variant="outline-primary" className="w-100 mb-3 mt-4">
+                Login with Google
+              </Button>
 
               <div className="mt-3 text-center">
                 <small>
-                  Don't have an account? <a href="#">Sign up</a>
+                  Nog geen account? <a href="#">Account aanmaken</a>
                 </small>
               </div>
             </Form>
