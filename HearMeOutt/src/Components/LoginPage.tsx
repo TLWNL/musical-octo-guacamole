@@ -20,10 +20,15 @@ const LoginPage = () => {
       target: ".form-registration",
       content:
         "Als de gebruiker geen account heeft, klikt hij hier om een account aan te maken.",
+      placement: "top",
     },
   ];
+
   const simulateUserInput = () => {
-    console.log("check");
+    if (textDone) {
+      return; // Prevent running again if typing is already finished
+    }
+
     const emailField = document.getElementById(
       "formBasicEmail"
     ) as HTMLInputElement;
@@ -32,7 +37,6 @@ const LoginPage = () => {
     ) as HTMLInputElement;
 
     if (emailField && passwordField) {
-      // Function to simulate typing
       const typeText = (
         element: HTMLInputElement,
         text: string,
@@ -54,90 +58,104 @@ const LoginPage = () => {
       // Typing animation for both fields
       typeText(emailField, "user@example.com", () => {
         typeText(passwordField, "password123", () => {
-          console.log("Both fields have been typed!");
+          setTextDone(true); // Set textDone to true when done
         });
       });
     } else {
       console.log("Fields not found");
     }
   };
+
   const [run, setRun] = useState(true);
+  const [textDone, setTextDone] = useState(false); // Keep track of when typing is done
+
   const handleJoyrideCallback = (data: CallBackProps) => {
     const { status, step } = data;
-    if (step.target === ".form-email" && status === STATUS.RUNNING) {
-      simulateUserInput();
+
+    // Trigger animation when the .form-email step is running
+    if (
+      step.target === ".form-email" &&
+      status === STATUS.RUNNING &&
+      !textDone
+    ) {
+      simulateUserInput(); // Trigger the typing animation
     }
+
+    // End the tour when finished or skipped
     if (status === STATUS.FINISHED || status === STATUS.SKIPPED) {
       setRun(false);
     }
   };
+
   return (
-    <div style={{ height: "100vh" }}>
-      <Joyride
-        steps={steps}
-        continuous
-        showProgress
-        showSkipButton
-        run={run}
-        callback={handleJoyrideCallback}
-        styles={{
-          options: {
-            zIndex: 1000,
-          },
-        }}
-      />
-      <Container fluid className="h-100 welkom-section">
-        <Row className="h-100">
-          <Col
-            xs={12}
-            md={7}
-            className="d-flex flex-column justify-content-center align-items-center bg-primary text-white"
-          ></Col>
+    <>
+      <div style={{ height: "100vh" }}>
+        <Joyride
+          steps={steps}
+          continuous
+          showProgress
+          showSkipButton
+          run={run}
+          callback={handleJoyrideCallback}
+          styles={{
+            options: {
+              zIndex: 1000,
+            },
+          }}
+        />
+        <Container fluid className="h-100 welkom-section">
+          <Row className="h-100">
+            <Col
+              xs={12}
+              md={7}
+              className="d-flex flex-column justify-content-center align-items-center bg-primary text-white"
+            ></Col>
 
-          <Col
-            xs={12}
-            md={4}
-            className="d-flex justify-content-center align-items-center"
-          >
-            <Form
-              className="form-email"
-              style={{ width: "100%", maxWidth: "400px" }}
+            <Col
+              xs={12}
+              md={4}
+              className="d-flex justify-content-center align-items-center"
             >
-              <Image src="https://picsum.photos/300/200" className="mb-2" />
-              <h1 className=" ">Welkom</h1>
+              <Form
+                className="form-email"
+                style={{ width: "100%", maxWidth: "400px" }}
+              >
+                <Image src="https://picsum.photos/300/200" className="mb-2" />
+                <h1>Welkom</h1>
 
-              <p className=" text-center">
-                Welkom bij HearMeOutt. Log in om verder te gaan.
-              </p>
-              <h2 className="mb-4 text-center">Login</h2>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-              </Form.Group>
+                <p className="text-center">
+                  Welkom bij HearMeOutt. Log in om verder te gaan.
+                </p>
+                <h2 className="mb-4 text-center">Login</h2>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email" />
+                </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
-              </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" />
+                </Form.Group>
 
-              <Button variant="primary" type="submit" className="w-100">
-                Login
-              </Button>
-              <Button variant="outline-primary" className="w-100 mb-3 mt-4">
-                Login with Google
-              </Button>
+                <Button variant="primary" type="submit" className="w-100">
+                  Login
+                </Button>
+                <Button variant="outline-primary" className="w-100 mb-3 mt-4">
+                  Login with Google
+                </Button>
 
-              <div className="mt-3 text-center form-registration">
-                <small>
-                  Nog geen account?{" "}
-                  <a href="/gebruiker/aanmaken">Account aanmaken</a>
-                </small>
-              </div>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+                <div className="mt-3 text-center form-registration">
+                  <small>
+                    Nog geen account?{" "}
+                    <a href="/gebruiker/aanmaken">Account aanmaken</a>
+                  </small>
+                </div>
+              </Form>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    </>
   );
 };
 
