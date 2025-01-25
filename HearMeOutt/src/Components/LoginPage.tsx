@@ -8,12 +8,18 @@ const LoginPage = () => {
   const steps = [
     {
       target: ".welkom-section",
-      content: "Dit is waar de clienten (beide business en consumer) inloggen.",
+      content:
+        "Dit is waar de clienten (beide business en consumer) inloggen. In deze walkthrough lopen we door het proces van de client, en van een bedrijf",
     },
     {
       target: ".form-email",
       content:
         "Gebruikers kunnen inloggen met een email adres en wachtwoord, of met Google",
+    },
+    {
+      target: ".form-registration",
+      content:
+        "Als de gebruiker geen account heeft, klikt hij hier om een account aan te maken.",
     },
   ];
   const simulateUserInput = () => {
@@ -76,7 +82,7 @@ const LoginPage = () => {
         callback={handleJoyrideCallback}
         styles={{
           options: {
-            zIndex: 10000,
+            zIndex: 1000,
           },
         }}
       />
@@ -98,9 +104,9 @@ const LoginPage = () => {
               style={{ width: "100%", maxWidth: "400px" }}
             >
               <Image src="https://picsum.photos/300/200" className="mb-2" />
-              <h1>Welkom</h1>
+              <h1 className=" ">Welkom</h1>
 
-              <p className="text-center">
+              <p className=" text-center">
                 Welkom bij HearMeOutt. Log in om verder te gaan.
               </p>
               <h2 className="mb-4 text-center">Login</h2>
@@ -121,9 +127,10 @@ const LoginPage = () => {
                 Login with Google
               </Button>
 
-              <div className="mt-3 text-center">
+              <div className="mt-3 text-center form-registration">
                 <small>
-                  Nog geen account? <a href="#">Account aanmaken</a>
+                  Nog geen account?{" "}
+                  <a href="/gebruiker/aanmaken">Account aanmaken</a>
                 </small>
               </div>
             </Form>
