@@ -1,11 +1,45 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "react-bootstrap/Image";
+import Joyride, { CallBackProps, STATUS } from "react-joyride";
+import { useState } from "react";
 
 const LoginPage = () => {
+  const steps = [
+    {
+      target: ".welkom-section",
+      content: "Dit is waar de clienten (beide business en consumer) inloggen.",
+    },
+    {
+      target: ".form-email",
+      content:
+        "Gebruikers kunnen inloggen met een email adres en wachtwoord, of met Google",
+    },
+  ];
+
+  const [run, setRun] = useState(true);
+  const handleJoyrideCallback = (data: CallBackProps) => {
+    const { status } = data;
+    if (status === STATUS.FINISHED || status === STATUS.SKIPPED) {
+      setRun(false);
+    }
+  };
   return (
     <div style={{ height: "100vh" }}>
-      <Container fluid className="h-100">
+      <Joyride
+        steps={steps}
+        continuous
+        showProgress
+        showSkipButton
+        run={run}
+        callback={handleJoyrideCallback}
+        styles={{
+          options: {
+            zIndex: 10000,
+          },
+        }}
+      />
+      <Container fluid className="h-100 welkom-section">
         <Row className="h-100">
           <Col
             xs={12}
@@ -18,7 +52,10 @@ const LoginPage = () => {
             md={4}
             className="d-flex justify-content-center align-items-center"
           >
-            <Form style={{ width: "100%", maxWidth: "400px" }}>
+            <Form
+              className="form-email"
+              style={{ width: "100%", maxWidth: "400px" }}
+            >
               <Image src="https://picsum.photos/300/200" className="mb-2" />
               <h1>Welkom</h1>
 
