@@ -17,16 +17,15 @@ const LoginPage = () => {
         "Gebruikers kunnen inloggen met een email adres en wachtwoord, of met Google",
     },
     {
-      target: ".form-registration",
+      target: ".form-registration-person",
       content:
         "Als de gebruiker geen account heeft, klikt hij hier om een account aan te maken.",
-      placement: "top",
     },
   ];
 
   const simulateUserInput = () => {
     if (textDone) {
-      return; // Prevent running again if typing is already finished
+      return;
     }
 
     const emailField = document.getElementById(
@@ -146,8 +145,19 @@ const LoginPage = () => {
 
                 <div className="mt-3 text-center form-registration">
                   <small>
-                    Nog geen account?{" "}
-                    <a href="/gebruiker/aanmaken">Account aanmaken</a>
+                    Nog geen account? <br></br>
+                    <a
+                      className="form-registration-company"
+                      href="/bedrijf/aanmaken"
+                    >
+                      Registreer je als bedrijf
+                    </a>{" "}
+                    <a
+                      className="form-registration-person"
+                      href="/gebruiker/aanmaken"
+                    >
+                      Registreer je als persoon
+                    </a>
                   </small>
                 </div>
               </Form>
