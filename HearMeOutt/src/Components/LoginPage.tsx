@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "react-bootstrap/Image";
 import Joyride, { CallBackProps, STATUS } from "react-joyride";
 import { useState } from "react";
+import { Link } from "react-router";
 
 const LoginPage = () => {
   const steps = [
@@ -152,12 +153,12 @@ const LoginPage = () => {
                     >
                       Registreer je als bedrijf
                     </a>{" "}
-                    <a
+                    <Link
                       className="form-registration-person"
-                      href="/gebruiker/aanmaken"
+                      to="/gebruiker/aanmaken"
                     >
                       Registreer je als persoon
-                    </a>
+                    </Link>
                   </small>
                 </div>
               </Form>
