@@ -7,6 +7,7 @@ import {
   Form,
   ButtonGroup,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const RegistrationForm: React.FC = () => {
   const [selectedButton, setSelectedButton] = useState<string>("stage");
@@ -223,9 +224,11 @@ const RegistrationForm: React.FC = () => {
         </Row>
         <Row className="mt-4 ms-5" style={{ paddingTop: "120px" }}>
           <Col md={12}>
-            <Button variant="dark" type="submit" className="w-100" size="lg">
-              Registreren
-            </Button>
+            <Link to="/gebruiker/dashboard" style={{ textDecoration: "none" }}>
+              <Button variant="dark" type="submit" className="w-100" size="lg">
+                Registreren
+              </Button>
+            </Link>
           </Col>
         </Row>
       </Container>
