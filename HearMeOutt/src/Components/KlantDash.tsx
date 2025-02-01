@@ -38,7 +38,7 @@ function KlantDash() {
 
             {/* Job Postings Grid */}
             <Row style={{ marginLeft: "120px" }} className="gy-3">
-              {Array.from({ length: 10 }).map((_, index) => (
+              {Array.from({ length: 8 }).map((_, index) => (
                 <Col key={index} md={6}>
                   <JobPosting
                     title="Assistent manager groenteboer"
