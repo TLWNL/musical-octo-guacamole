@@ -1,5 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import ReviewsCarousel from "./ReviewsCarousel";
+import RegistrationForm from "./RegistrationForm";
 
 function AccountRegistration() {
   return (
@@ -8,7 +9,7 @@ function AccountRegistration() {
         <Row>
           <Col
             md={{ span: 4 }}
-            className="mt-2 ms-4 p-3 d-flex flex-column"
+            className="mt-4 ms-4 p-3 d-flex flex-column"
             style={{
               background: "#424B5A",
               height: "95vh",
@@ -66,6 +67,9 @@ function AccountRegistration() {
                 <ReviewsCarousel />
               </Col>
             </Row>
+          </Col>
+          <Col md="7">
+            <RegistrationForm></RegistrationForm>
           </Col>
         </Row>
       </Container>

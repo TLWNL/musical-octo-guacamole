@@ -1,5 +1,4 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
 import Carousel from "react-bootstrap/Carousel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
@@ -45,7 +44,7 @@ const ReviewsCarousel: React.FC = () => {
         <Carousel.Item key={review.id} interval={4000}>
           {/* Center Content */}
           <div
-            className="d-flex flex-column justify-content-center "
+            className="d-flex flex-column justify-content-center text-start"
             style={{ height: "190px", padding: "30px" }}
           >
             <p className="text-white mb-4">{review.text}</p>
