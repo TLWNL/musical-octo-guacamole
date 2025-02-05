@@ -1,11 +1,97 @@
 import { useState } from "react";
 import { Col, Container, Row, Dropdown, ButtonGroup } from "react-bootstrap";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import MyNavbar from "./MyNavBar";
 import JobFilter from "./JobFilter";
 import JobPosting from "./JobPosting";
 
-function KlantDash() {
-  const [sortOption, setSortOption] = useState("Populariteit");
+// Define the type for a job posting
+interface JobPostingType {
+  title: string;
+  company: string;
+  location: string;
+  salary: string;
+  hours: string;
+  isNew?: boolean;
+}
+
+const KlantDash: React.FC = () => {
+  const [sortOption, setSortOption] = useState<string>("Populariteit"); // State for sorting option
+  const navigate = useNavigate(); // Hook to navigate programmatically
+
+  // Handle job click
+  const handleJobClick = (job: JobPostingType): void => {
+    navigate(`/vacature/testVacature`); // Redirect to the job description page
+  };
+
+  // Example job postings array
+  const jobPostings: JobPostingType[] = [
+    {
+      title: "Assistent manager groenteboer",
+      company: "Rabobank Groningen",
+      location: "Groningen",
+      salary: "€2500,- / €3000,- per maand",
+      hours: "32 tot 40 uur per maand",
+      isNew: true,
+    },
+    {
+      title: "Assistent manager groenteboer",
+      company: "Rabobank Groningen",
+      location: "Groningen",
+      salary: "€2500,- / €3000,- per maand",
+      hours: "32 tot 40 uur per maand",
+      isNew: true,
+    },
+    {
+      title: "Assistent manager groenteboer",
+      company: "Rabobank Groningen",
+      location: "Groningen",
+      salary: "€2500,- / €3000,- per maand",
+      hours: "32 tot 40 uur per maand",
+      isNew: true,
+    },
+    {
+      title: "Assistent manager groenteboer",
+      company: "Rabobank Groningen",
+      location: "Groningen",
+      salary: "€2500,- / €3000,- per maand",
+      hours: "32 tot 40 uur per maand",
+      isNew: true,
+    },
+    {
+      title: "Assistent manager groenteboer",
+      company: "Rabobank Groningen",
+      location: "Groningen",
+      salary: "€2500,- / €3000,- per maand",
+      hours: "32 tot 40 uur per maand",
+      isNew: true,
+    },
+    {
+      title: "Assistent manager groenteboer",
+      company: "Rabobank Groningen",
+      location: "Groningen",
+      salary: "€2500,- / €3000,- per maand",
+      hours: "32 tot 40 uur per maand",
+      isNew: true,
+    },
+    {
+      title: "Assistent manager groenteboer",
+      company: "Rabobank Groningen",
+      location: "Groningen",
+      salary: "€2500,- / €3000,- per maand",
+      hours: "32 tot 40 uur per maand",
+      isNew: true,
+    },
+    {
+      title: "Assistent manager groenteboer",
+      company: "Rabobank Groningen",
+      location: "Groningen",
+      salary: "€2500,- / €3000,- per maand",
+      hours: "32 tot 40 uur per maand",
+      isNew: true,
+    },
+    // More job postings can be added here
+  ];
 
   return (
     <>
@@ -38,15 +124,16 @@ function KlantDash() {
 
             {/* Job Postings Grid */}
             <Row style={{ marginLeft: "120px" }} className="gy-3">
-              {Array.from({ length: 8 }).map((_, index) => (
+              {jobPostings.map((job, index) => (
                 <Col key={index} md={6}>
                   <JobPosting
-                    title="Assistent manager groenteboer"
-                    company="Rabobank Groningen"
-                    location="Groningen"
-                    salary="€2500,- / €3000,- per maand"
-                    hours="32 tot 40 uur per maand"
-                    isNew={index === 0}
+                    title={job.title}
+                    company={job.company}
+                    location={job.location}
+                    salary={job.salary}
+                    hours={job.hours}
+                    isNew={job.isNew}
+                    onClick={() => handleJobClick(job)} // Trigger click handler with job
                   />
                 </Col>
               ))}
@@ -56,6 +143,6 @@ function KlantDash() {
       </Container>
     </>
   );
-}
+};
 
 export default KlantDash;

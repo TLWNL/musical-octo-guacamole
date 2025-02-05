@@ -8,6 +8,7 @@ interface JobPostingProps {
   salary: string;
   hours: string;
   isNew?: boolean;
+  onClick: () => void; // Add onClick prop
 }
 
 function JobPosting({
@@ -17,11 +18,13 @@ function JobPosting({
   salary,
   hours,
   isNew,
+  onClick,
 }: JobPostingProps) {
   return (
     <Card
       className="p-4 shadow-sm border rounded"
       style={{ borderLeft: "5px solid #3E4756" }}
+      onClick={onClick} // Attach onClick handler to Card
     >
       <Row className="align-items-center">
         <Col xs="auto">
