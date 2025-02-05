@@ -23,7 +23,11 @@ const BusinessDash: React.FC = () => {
   ); // State for checkboxes
 
   // Toggle modal visibility
-  const handleShowModal = (card: any) => {
+  const handleShowModal = (card: any, event: React.MouseEvent<HTMLElement>) => {
+    // Check if the click target is an audio player
+    if (event.target instanceof HTMLAudioElement) {
+      return; // If the click was on the audio player, do nothing
+    }
     setSelectedCard(card);
     setShowModal(true);
   };
@@ -77,13 +81,16 @@ const BusinessDash: React.FC = () => {
               {Array.from({ length: 6 }, (_, index) => (
                 <Col md={6} key={index}>
                   <ResponseCard
-                    audioSrc="/Untitled.mp3"
+                    audioSrc="/casus1.opus"
                     name={`Kandidaat #${index + 1}`}
-                    onClick={() =>
-                      handleShowModal({
-                        name: `Kandidaat #${index + 1}`,
-                        audioSrc: "/Untitled.mp3",
-                      })
+                    onClick={(event: React.MouseEvent<HTMLElement>) =>
+                      handleShowModal(
+                        {
+                          name: `Kandidaat #${index + 1}`,
+                          audioSrc: "/casus2.opus",
+                        },
+                        event
+                      )
                     }
                   />
                 </Col>

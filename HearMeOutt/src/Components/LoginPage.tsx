@@ -147,18 +147,26 @@ const LoginPage = () => {
                 <div className="mt-3 text-center form-registration">
                   <small>
                     Nog geen account? <br></br>
-                    <a
-                      className="form-registration-company"
-                      href="/bedrijf/aanmaken"
-                    >
-                      Registreer je als bedrijf
-                    </a>{" "}
-                    <Link
-                      className="form-registration-person"
-                      to="/gebruiker/aanmaken"
-                    >
-                      Registreer je als persoon
-                    </Link>
+                    <Row>
+                      <Col>
+                        <Link
+                          className="form-registration-company"
+                          to="/bedrijf/aanmaken"
+                        >
+                          Registreer je als bedrijf
+                        </Link>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col>
+                        <Link
+                          className="form-registration-person"
+                          to="/gebruiker/aanmaken"
+                        >
+                          Registreer je als persoon
+                        </Link>
+                      </Col>
+                    </Row>
                   </small>
                 </div>
               </Form>

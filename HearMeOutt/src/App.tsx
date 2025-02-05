@@ -2,7 +2,7 @@ import "./App.css";
 import AccountRegistration from "./Components/AccountRegistration";
 import LoginPage from "./Components/LoginPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import RegistrationBus from "./Components/RegistrationBus";
+import RegistrationBus from "./Components/Bedrijf/RegistrationBus";
 import KlantDash from "./Components/KlantDash";
 import JobPostingDescription from "./Components/JobPostingDescription";
 import CasusReaction from "./Components/Vacature/CasusReaction";
@@ -13,16 +13,15 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+
         <Route path="/gebruiker/aanmaken" element={<AccountRegistration />} />
-        <Route path="/bedrijf/aanmaken" element={<RegistrationBus />} />
         <Route path="/gebruiker/dashboard" element={<KlantDash />} />
+
+        <Route path="/bedrijf/aanmaken" element={<RegistrationBus />} />
         <Route path="/bedrijf/dashboard" element={<BusinessDash />} />
+        <Route path="/vacature/:jobId" element={<JobPostingDescription />} />
         <Route
-          path="/vacature/testVacature"
-          element={<JobPostingDescription />}
-        />
-        <Route
-          path="/vacature/testVacature/casus"
+          path="/vacature/soliciteer/:casusId"
           element={<CasusReaction />}
         />
       </Routes>

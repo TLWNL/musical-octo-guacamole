@@ -24,73 +24,15 @@ const KlantDash: React.FC = () => {
     navigate(`/vacature/testVacature`); // Redirect to the job description page
   };
 
-  // Example job postings array
   const jobPostings: JobPostingType[] = [
     {
-      title: "Assistent manager groenteboer",
-      company: "Rabobank Groningen",
+      title: "Verzorger",
+      company: "Zorginstelling De Hoop",
       location: "Groningen",
       salary: "€2500,- / €3000,- per maand",
       hours: "32 tot 40 uur per maand",
       isNew: true,
     },
-    {
-      title: "Assistent manager groenteboer",
-      company: "Rabobank Groningen",
-      location: "Groningen",
-      salary: "€2500,- / €3000,- per maand",
-      hours: "32 tot 40 uur per maand",
-      isNew: true,
-    },
-    {
-      title: "Assistent manager groenteboer",
-      company: "Rabobank Groningen",
-      location: "Groningen",
-      salary: "€2500,- / €3000,- per maand",
-      hours: "32 tot 40 uur per maand",
-      isNew: true,
-    },
-    {
-      title: "Assistent manager groenteboer",
-      company: "Rabobank Groningen",
-      location: "Groningen",
-      salary: "€2500,- / €3000,- per maand",
-      hours: "32 tot 40 uur per maand",
-      isNew: true,
-    },
-    {
-      title: "Assistent manager groenteboer",
-      company: "Rabobank Groningen",
-      location: "Groningen",
-      salary: "€2500,- / €3000,- per maand",
-      hours: "32 tot 40 uur per maand",
-      isNew: true,
-    },
-    {
-      title: "Assistent manager groenteboer",
-      company: "Rabobank Groningen",
-      location: "Groningen",
-      salary: "€2500,- / €3000,- per maand",
-      hours: "32 tot 40 uur per maand",
-      isNew: true,
-    },
-    {
-      title: "Assistent manager groenteboer",
-      company: "Rabobank Groningen",
-      location: "Groningen",
-      salary: "€2500,- / €3000,- per maand",
-      hours: "32 tot 40 uur per maand",
-      isNew: true,
-    },
-    {
-      title: "Assistent manager groenteboer",
-      company: "Rabobank Groningen",
-      location: "Groningen",
-      salary: "€2500,- / €3000,- per maand",
-      hours: "32 tot 40 uur per maand",
-      isNew: true,
-    },
-    // More job postings can be added here
   ];
 
   return (

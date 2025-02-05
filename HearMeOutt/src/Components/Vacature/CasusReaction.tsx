@@ -1,13 +1,12 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import MyNavbar from "../MyNavBar";
-import JobDescriptionTitleBar from "./JobDescriptionTitleBar";
 import RecordingComponent from "./RecordingComponent";
 
 function CasusReaction() {
   return (
     <>
       <MyNavbar></MyNavbar>
-      <JobDescriptionTitleBar />
+      {/* <JobDescriptionTitleBar /> */}
 
       <Container fluid className="vh-60">
         <Row>

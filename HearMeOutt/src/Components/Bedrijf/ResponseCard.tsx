@@ -4,7 +4,7 @@ import MyAudioPlayer from "../AudioPlayer"; // Assuming MyAudioPlayer is your au
 interface ResponseCardProps {
   name: string;
   audioSrc: string; // Path to the audio file
-  onClick: () => void;
+  onClick: (event: React.MouseEvent<HTMLElement>) => void; // Modify to accept event
 }
 
 function ResponseCard({ name, audioSrc, onClick }: ResponseCardProps) {
