@@ -1,12 +1,4 @@
-import { Col, Container, Row, Button } from "react-bootstrap";
-import {
-  FaMapMarkerAlt,
-  FaInfoCircle,
-  FaCalendarAlt,
-  FaArrowLeft,
-} from "react-icons/fa"; // Import icons
 import MyNavbar from "./MyNavBar";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
 import JobDescriptionTitleBar from "./Vacature/JobDescriptionTitleBar";
 import JobSteps from "./Vacature/JobSteps";
 import StepsCards from "./Vacature/StepsCards";

@@ -1,7 +1,6 @@
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import MyNavbar from "../MyNavBar";
 import JobDescriptionTitleBar from "./JobDescriptionTitleBar";
-import AudioPlayer from "../AudioPlayer";
 import RecordingComponent from "./RecordingComponent";
 
 function CasusReaction() {
