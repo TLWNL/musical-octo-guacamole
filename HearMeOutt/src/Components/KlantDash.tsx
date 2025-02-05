@@ -38,7 +38,7 @@ const KlantDash: React.FC = () => {
   return (
     <>
       <Container fluid>
-        <MyNavbar />
+        <MyNavbar chosenRole="Klant" />
         <Row
           className="mt-5"
           style={{ paddingTop: "80px", position: "relative" }}

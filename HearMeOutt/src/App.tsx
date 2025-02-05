@@ -7,6 +7,8 @@ import KlantDash from "./Components/KlantDash";
 import JobPostingDescription from "./Components/JobPostingDescription";
 import CasusReaction from "./Components/Vacature/CasusReaction";
 import BusinessDash from "./BusinessDash";
+import CompanyMessagePage from "./Components/Bedrijf/CompanyMessagePage";
+import ClientMessagePage from "./Components/Klant/ClientMessagePage";
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           path="/vacature/solliciteer/:casusId"
           element={<CasusReaction />}
         />
+        <Route path="/bedrijf/berichten" element={<CompanyMessagePage />} />
+        <Route path="/klant/berichten" element={<ClientMessagePage />} />
       </Routes>
     </Router>
   );

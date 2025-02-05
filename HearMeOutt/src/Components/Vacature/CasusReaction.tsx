@@ -50,7 +50,7 @@ function CasusReaction() {
       {/* Explanation Modal */}
       <ExplanationModal show={showModal} handleClose={handleCloseModal} />
 
-      <MyNavbar />
+      <MyNavbar chosenRole="Klant" />
       <Container className="mt-5">
         <Row className="justify-content-center">
           {/* Casus Info Section */}

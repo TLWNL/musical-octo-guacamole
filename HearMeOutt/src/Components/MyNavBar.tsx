@@ -1,14 +1,19 @@
 import { faBell, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Navbar, Container, Nav, Dropdown } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-const MyNavbar = () => {
-  const [role, setRole] = useState("Klant");
+const MyNavbar = ({ chosenRole }: { chosenRole: "Klant" | "Bedrijf" }) => {
+  const [role, setRole] = useState<"Klant" | "Bedrijf">(chosenRole);
+  const navigate = useNavigate(); // Use navigate for redirection
 
-  const dashboardLink =
-    role === "Klant" ? "/gebruiker/dashboard" : "/bedrijf/dashboard";
+  const handleRoleChange = (newRole: "Klant" | "Bedrijf") => {
+    setRole(newRole);
+    const newPath =
+      newRole === "Klant" ? "/gebruiker/dashboard" : "/bedrijf/dashboard";
+    navigate(newPath);
+  };
 
   return (
     <Navbar
@@ -35,10 +40,10 @@ const MyNavbar = () => {
               {role}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item onClick={() => setRole("Bedrijf")}>
+              <Dropdown.Item onClick={() => handleRoleChange("Bedrijf")}>
                 Bedrijf
               </Dropdown.Item>
-              <Dropdown.Item onClick={() => setRole("Klant")}>
+              <Dropdown.Item onClick={() => handleRoleChange("Klant")}>
                 Klant
               </Dropdown.Item>
             </Dropdown.Menu>
@@ -51,13 +56,25 @@ const MyNavbar = () => {
           className="d-flex justify-content-center"
         >
           <Nav className="d-flex gap-5">
-            <Nav.Link as={Link} to={dashboardLink} style={{ fontSize: "18px" }}>
+            <Nav.Link
+              as={Link}
+              to={
+                role === "Klant" ? "/gebruiker/dashboard" : "/bedrijf/dashboard"
+              }
+              style={{ fontSize: "18px" }}
+            >
               DASHBOARD
             </Nav.Link>
             <Nav.Link as={Link} to="/instellingen" style={{ fontSize: "18px" }}>
               INSTELLINGEN
             </Nav.Link>
-            <Nav.Link as={Link} to="/berichten" style={{ fontSize: "18px" }}>
+            <Nav.Link
+              as={Link}
+              to={
+                role === "Klant" ? "/gebruiker/berichten" : "/bedrijf/berichten"
+              }
+              style={{ fontSize: "18px" }}
+            >
               BERICHTEN
             </Nav.Link>
             <Nav.Link

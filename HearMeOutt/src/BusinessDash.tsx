@@ -50,7 +50,7 @@ const BusinessDash: React.FC = () => {
   return (
     <>
       <Container fluid>
-        <MyNavbar />
+        <MyNavbar chosenRole="Bedrijf" />
         <Row
           className="mt-5"
           style={{ paddingTop: "80px", position: "relative" }}
@@ -58,22 +58,31 @@ const BusinessDash: React.FC = () => {
           <JobFilter />
 
           {/* Sort Dropdown Button */}
-          <Col md={8} className="position-relative">
-            <Dropdown as={ButtonGroup} className="end-0 me-3">
-              <Dropdown.Toggle variant="light">
-                Sorteer op {sortOption}
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item onClick={() => setSortOption("Populariteit")}>
-                  Populariteit
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => setSortOption("Salaris")}>
-                  Salaris
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => setSortOption("Locatie")}>
-                  Locatie
-                </Dropdown.Item>
-              </Dropdown.Menu>
+          <Col md={{ span: 8 }} className="position-relative">
+            <Dropdown as={ButtonGroup} className="end-4 me-3">
+              <Row>
+                <Col>
+                  <p>Sorteer op </p>
+                </Col>
+                <Col>
+                  <Dropdown.Toggle variant="light">
+                    {sortOption}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item
+                      onClick={() => setSortOption("Populariteit")}
+                    >
+                      Populariteit
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => setSortOption("Salaris")}>
+                      Salaris
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={() => setSortOption("Locatie")}>
+                      Locatie
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Col>
+              </Row>
             </Dropdown>
 
             {/* Job Postings Grid */}

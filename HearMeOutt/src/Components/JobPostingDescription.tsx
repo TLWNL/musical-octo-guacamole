@@ -67,7 +67,7 @@ function JobPostingDescription() {
 
   return (
     <>
-      <MyNavbar />
+      <MyNavbar chosenRole="Klant" />
       <JobDescriptionTitleBar
         jobTitle={job.jobTitle}
         location={job.location}
