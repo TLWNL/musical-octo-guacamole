@@ -66,3 +66,30 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.custom-checkbox {
+  width: 25px; /* Make it larger */
+  height: 25px;
+  appearance: none; /* Remove default styling */
+  border: 2px solid #ccc;
+  border-radius: 5px; /* Make it slightly rounded */
+  cursor: pointer;
+  position: relative;
+  outline: none;
+}
+
+.custom-checkbox:checked {
+  background-color: green; /* Make background green when checked */
+  border-color: green;
+}
+
+.custom-checkbox:checked::after {
+  content: "✔"; /* Add a checkmark */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

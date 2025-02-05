@@ -20,7 +20,7 @@ const KlantDash: React.FC = () => {
   const navigate = useNavigate(); // Hook to navigate programmatically
 
   // Handle job click
-  const handleJobClick = () => {
+  const handleJobClick = (): void => {
     navigate(`/vacature/testVacature`); // Redirect to the job description page
   };
 

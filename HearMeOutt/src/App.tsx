@@ -6,6 +6,7 @@ import RegistrationBus from "./Components/RegistrationBus";
 import KlantDash from "./Components/KlantDash";
 import JobPostingDescription from "./Components/JobPostingDescription";
 import CasusReaction from "./Components/Vacature/CasusReaction";
+import BusinessDash from "./BusinessDash";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/gebruiker/aanmaken" element={<AccountRegistration />} />
         <Route path="/bedrijf/aanmaken" element={<RegistrationBus />} />
         <Route path="/gebruiker/dashboard" element={<KlantDash />} />
+        <Route path="/bedrijf/dashboard" element={<BusinessDash />} />
         <Route
           path="/vacature/testVacature"
           element={<JobPostingDescription />}
