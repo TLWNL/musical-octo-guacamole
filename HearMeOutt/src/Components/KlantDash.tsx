@@ -133,7 +133,7 @@ const KlantDash: React.FC = () => {
                     salary={job.salary}
                     hours={job.hours}
                     isNew={job.isNew}
-                    onClick={() => handleJobClick(job)} // Trigger click handler with job
+                    onClick={() => handleJobClick()} // Trigger click handler with job
                   />
                 </Col>
               ))}
