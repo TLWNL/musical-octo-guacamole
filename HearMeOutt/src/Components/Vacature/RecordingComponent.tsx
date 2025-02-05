@@ -13,7 +13,7 @@ const RecordingComponent = () => {
   };
 
   return (
-    <Row>
+    <Row className="mb-4">
       <Col className="mt-4" md={{ span: 7, offset: 2 }}>
         <AudioPlayer src="/Untitled.mp3" />
       </Col>

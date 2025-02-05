@@ -21,7 +21,7 @@ const KlantDash: React.FC = () => {
 
   // Handle job click
   const handleJobClick = (): void => {
-    navigate(`/vacature/testVacature`); // Redirect to the job description page
+    navigate(`/vacature/1`); // Redirect to the job description page
   };
 
   const jobPostings: JobPostingType[] = [

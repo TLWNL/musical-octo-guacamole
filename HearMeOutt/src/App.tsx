@@ -21,7 +21,7 @@ function App() {
         <Route path="/bedrijf/dashboard" element={<BusinessDash />} />
         <Route path="/vacature/:jobId" element={<JobPostingDescription />} />
         <Route
-          path="/vacature/soliciteer/:casusId"
+          path="/vacature/solliciteer/:casusId"
           element={<CasusReaction />}
         />
       </Routes>
