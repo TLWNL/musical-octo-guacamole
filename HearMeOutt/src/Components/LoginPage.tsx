@@ -3,9 +3,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "react-bootstrap/Image";
 import Joyride, { CallBackProps, STATUS } from "react-joyride";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const handleLogin = () => {
+    navigate("/gebruiker/dashboard");
+  };
   const steps = [
     {
       target: ".welkom-section",
@@ -137,7 +141,12 @@ const LoginPage = () => {
                   <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
 
-                <Button variant="primary" type="submit" className="w-100">
+                <Button
+                  onClick={handleLogin}
+                  variant="primary"
+                  type="submit"
+                  className="w-100"
+                >
                   Login
                 </Button>
                 <Button variant="outline-primary" className="w-100 mb-3 mt-4">

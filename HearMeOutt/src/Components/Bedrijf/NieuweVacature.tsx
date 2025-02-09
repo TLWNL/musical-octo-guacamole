@@ -24,15 +24,11 @@ const NieuweVacature: React.FC = () => {
     setSelectedButton(button);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
@@ -92,7 +88,7 @@ const NieuweVacature: React.FC = () => {
                         as="select"
                         name="industry"
                         value={formData.industry}
-                        onChange={(e) => handleInputChange(e)}
+                        onChange={handleInputChange} // Works for both input and select
                         size="lg"
                         style={{
                           borderRadius: "8px",
@@ -115,7 +111,7 @@ const NieuweVacature: React.FC = () => {
                         as="select"
                         name="ageCategory"
                         value={formData.ageCategory}
-                        onChange={(e) => handleInputChange(e)}
+                        onChange={handleInputChange} // Works for both input and select
                         size="lg"
                         style={{
                           borderRadius: "8px",
@@ -141,7 +137,7 @@ const NieuweVacature: React.FC = () => {
                         rows={4}
                         name="vacancyIntroduction"
                         value={formData.vacancyIntroduction}
-                        onChange={handleTextareaChange}
+                        onChange={handleInputChange} // Works for both input and textarea
                         placeholder="Geef een korte introductie van de vacature"
                         size="lg"
                         style={{
@@ -163,7 +159,7 @@ const NieuweVacature: React.FC = () => {
                         rows={4}
                         name="whatWeOffer"
                         value={formData.whatWeOffer}
-                        onChange={handleTextareaChange}
+                        onChange={handleInputChange} // Works for both input and textarea
                         placeholder="Beschrijf wat je biedt"
                         size="lg"
                         style={{
@@ -185,7 +181,7 @@ const NieuweVacature: React.FC = () => {
                         rows={4}
                         name="whoAreYou"
                         value={formData.whoAreYou}
-                        onChange={handleTextareaChange}
+                        onChange={handleInputChange} // Works for both input and textarea
                         placeholder="Beschrijf wie je zoekt voor deze functie"
                         size="lg"
                         style={{
