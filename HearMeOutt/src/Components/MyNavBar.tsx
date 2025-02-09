@@ -68,7 +68,7 @@ const MyNavbar = ({ chosenRole }: { chosenRole: "Klant" | "Bedrijf" }) => {
             {role === "Bedrijf" && (
               <Nav.Link
                 as={Link}
-                to="/bedrijf/nieuwe-vacature"
+                to="/bedrijf/beheer-vacatures"
                 style={{ fontSize: "18px" }}
               >
                 VACATURES
