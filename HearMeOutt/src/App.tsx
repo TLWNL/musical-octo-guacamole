@@ -9,6 +9,9 @@ import CasusReaction from "./Components/Vacature/CasusReaction";
 import BusinessDash from "./BusinessDash";
 import CompanyMessagePage from "./Components/Bedrijf/CompanyMessagePage";
 import ClientMessagePage from "./Components/Klant/ClientMessagePage";
+import HoeWerktHet from "./Components/HoeWerktHet/HoeWerktHet";
+import NieuweVacature from "./Components/Bedrijf/NieuweVacature";
+import VacaturePage from "./Components/Bedrijf/VacaturePage";
 
 function App() {
   return (
@@ -27,7 +30,10 @@ function App() {
           element={<CasusReaction />}
         />
         <Route path="/bedrijf/berichten" element={<CompanyMessagePage />} />
-        <Route path="/klant/berichten" element={<ClientMessagePage />} />
+        <Route path="/gebruiker/berichten" element={<CompanyMessagePage />} />
+        <Route path="/hoe-werkt-het" element={<HoeWerktHet />} />
+        <Route path="/bedrijf/beheer-vacatures" element={<VacaturePage />} />
+        <Route path="/bedrijf/nieuwe-vacature" element={<NieuweVacature />} />
       </Routes>
     </Router>
   );

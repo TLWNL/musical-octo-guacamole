@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import MyNavbar from "../MyNavBar";
 import RecordingComponent from "./RecordingComponent";
 import ExplanationModal from "./ExplanationModal"; // Import the modal
+import JobDescriptionTitleBar from "./JobDescriptionTitleBar";
 
 // Define the structure for a case (casus)
 interface Casus {
@@ -45,16 +46,32 @@ function CasusReaction() {
     setShowModal(true);
   }, []);
 
+  const job = {
+    jobTitle: "Verzorger",
+    location: "Groningen",
+    salary: "€2500,- / €3000,- per maand",
+    hours: "32 tot 40 uur per maand",
+    jobId: "1", // Default to 1 if no jobId is found
+  };
+
   return (
     <>
       {/* Explanation Modal */}
       <ExplanationModal show={showModal} handleClose={handleCloseModal} />
 
       <MyNavbar chosenRole="Klant" />
+      <JobDescriptionTitleBar
+        jobTitle={job.jobTitle}
+        location={job.location}
+        salary={job.salary}
+        hours={job.hours}
+        jobId={job.jobId}
+        onBackButtonClick={handleBackButtonClick}
+      />
       <Container className="mt-5">
         <Row className="justify-content-center">
           {/* Casus Info Section */}
-          <Col md={8} lg={6} className="mt-4">
+          <Col md={6} lg={6} className="mt-4">
             <Card className="shadow-sm border-1 p-4">
               <Card.Body>
                 <h4 className="text-primary">{casus.name}</h4>
@@ -62,20 +79,22 @@ function CasusReaction() {
               </Card.Body>
             </Card>
           </Col>
-        </Row>
 
-        <Row className="justify-content-center mt-4">
-          {/* Response Section */}
-          <Col md={10} lg={8}>
+          <Col
+            md={6}
+            lg={6}
+            className="d-flex align-items-center justify-content-center"
+          >
             <Card
-              className="shadow-lg p-4"
+              className="shadow-lg p-4 w-100"
               style={{ backgroundColor: "#f8f9fa", borderRadius: "10px" }}
             >
-              <Card.Body>
-                <h5 className="text-dark mb-4">Reageer op de casus</h5>
-                <RecordingComponent />
+              <Card.Body className="d-flex flex-column align-items-center">
+                <Col md={12}>
+                  <RecordingComponent />
+                </Col>
 
-                <Form.Group controlId="textInput" className="mt-3">
+                <Form.Group controlId="textInput" className="mt-3 w-100">
                   <Form.Label className="text-muted">
                     Extra opmerkingen
                   </Form.Label>
@@ -87,11 +106,13 @@ function CasusReaction() {
                   />
                 </Form.Group>
 
-                <div className="d-flex justify-content-end mt-4">
-                  <Button variant="dark" onClick={handleBackButtonClick}>
-                    Verstuur
-                  </Button>
-                </div>
+                <Button
+                  variant="dark"
+                  className="mt-3"
+                  onClick={handleBackButtonClick}
+                >
+                  Verstuur
+                </Button>
               </Card.Body>
             </Card>
           </Col>

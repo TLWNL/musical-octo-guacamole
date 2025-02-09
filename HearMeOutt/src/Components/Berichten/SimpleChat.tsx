@@ -1,59 +1,76 @@
 import React, { useState } from "react";
-import { MessageList, Input, Button } from "react-chat-elements";
-import "react-chat-elements/dist/main.css";
+import {
+  MainContainer,
+  ChatContainer,
+  MessageList,
+  Message,
+  MessageInput,
+  TypingIndicator,
+  MessageModel,
+} from "@chatscope/chat-ui-kit-react";
+import "../../style/berichten.css";
+import { Container, Row, Col, Card } from "react-bootstrap"; // Import React-Bootstrap components
 
 const SimpleChat = () => {
-  const [messages, setMessages] = useState<any[]>([]);
+  const [messages, setMessages] = useState<MessageModel[]>([
+    {
+      message: "Hello! How can I help you?",
+      sentTime: "just now",
+      sender: "Chatbot",
+      direction: "incoming", // Must specify direction
+      position: "single", // Positioning of the message in the chat
+    },
+  ]);
 
-  const sendMessage = (text: string) => {
-    if (!text) return;
-    setMessages([...messages, { position: "right", type: "text", text }]);
+  const [isTyping, setIsTyping] = useState(false);
+
+  const handleSend = (text: string) => {
+    if (text.trim()) {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        {
+          message: text,
+          sentTime: "just now",
+          sender: "You",
+          direction: "outgoing", // Outgoing message
+          position: "single",
+        },
+      ]);
+    }
   };
 
   return (
-    <div
-      className="w-100"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        height: "100%", // Full height of parent container
-        border: "1px solid #ddd",
-        padding: "10px",
-      }}
-    >
-      {/* Wrapper for MessageList to apply styles */}
-      <div
-        style={{
-          flex: 1, // Takes up remaining space
-          overflowY: "auto", // Scrollable if messages exceed container height
-          marginBottom: "10px", // Add some spacing between messages and input
-        }}
-      >
-        <MessageList
-          className="message-list"
-          dataSource={messages}
-          referance={React.createRef()}
-          lockable={true}
-        />
-      </div>
+    <Container fluid className="vh-60 simple-chat-container">
+      <Row className="h-100">
+        <Col xs={12} className="d-flex flex-column">
+          {/* Chat Window */}
+          <Card className="flex-grow-1 p-3 shadow-sm d-flex flex-column">
+            <MainContainer className="flex-grow-1">
+              <ChatContainer className="flex-grow-1">
+                <MessageList
+                  typingIndicator={
+                    isTyping ? (
+                      <TypingIndicator content="Chatbot is typing..." />
+                    ) : null
+                  }
+                >
+                  {messages.map((msg, index) => (
+                    <Message key={index} model={msg} />
+                  ))}
+                </MessageList>
+              </ChatContainer>
+            </MainContainer>
 
-      {/* Wrapper div for Input to apply style */}
-      <div style={{ flexShrink: 0 }}>
-        <Input
-          placeholder="Type a message..."
-          onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
-            if (e.key === "Enter") {
-              sendMessage((e.target as HTMLInputElement).value);
-              (e.target as HTMLInputElement).value = ""; // Clear input after sending
-            }
-          }}
-          rightButtons={
-            <Button text="Send" onClick={() => sendMessage("Hello!")} />
-          }
-          maxHeight={40} // Set reasonable height for input
-        />
-      </div>
-    </div>
+            {/* Message Input at the Bottom */}
+            <MessageInput
+              placeholder="Type a message..."
+              onSend={handleSend}
+              className="mt-auto" // This pushes the input to the bottom
+            />
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

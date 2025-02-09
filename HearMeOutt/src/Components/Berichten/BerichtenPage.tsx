@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import BerichtenBox from "./BerichtenBox";
 import SimpleChat from "./SimpleChat";
-
 function BerichtenPage() {
   const selectedUser = {
     name: "Assistent manager groenteboer",
@@ -43,8 +42,11 @@ function BerichtenPage() {
           </Card>
 
           {/* Chat Window */}
-          <Card className="flex-grow-1 mt-3 p-3 shadow-sm">
-            <div className="h-100 d-flex align-items-center justify-content-center text-muted">
+          <Card
+            className="flex-grow-1 mt-3 p-3 shadow-sm"
+            style={{ height: "100%" }}
+          >
+            <div className="h-100 d-flex flex-column align-items-center justify-content-center text-muted">
               <SimpleChat />
             </div>
           </Card>
