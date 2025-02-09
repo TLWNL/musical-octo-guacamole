@@ -41,17 +41,14 @@ const HoeWerktHet: React.FC = () => {
           <Col md={6}>
             <div className="d-flex flex-column gap-4">
               <Step
-                number="1"
                 title="Zoek een vacature"
                 description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
               />
               <Step
-                number="2"
                 title="Meld je aan met je stem"
                 description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
               />
               <Step
-                number="3"
                 title="Ga op uitnodiging"
                 description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
               />
@@ -65,25 +62,11 @@ const HoeWerktHet: React.FC = () => {
 
 // Helper component for each step
 const Step: React.FC<{
-  number: string;
   title: string;
   description: string;
-}> = ({ number, title, description }) => {
+}> = ({ title, description }) => {
   return (
     <div className="d-flex align-items-start justify-content-center">
-      <div
-        className=" mt-4 mb-4 d-flex justify-content-center align-items-center rounded-circle"
-        style={{
-          width: "60px",
-          height: "60px",
-          border: "2px solid #6c757d",
-          color: "#6c757d",
-          fontWeight: "bold",
-          fontSize: "1.5rem",
-        }}
-      >
-        {number}
-      </div>
       <div className="ms-3 mt-3 mb-3">
         <h5 className="fw-bold mb-1" style={{ fontSize: "1.5rem" }}>
           {title}
