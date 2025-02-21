@@ -12,6 +12,7 @@ import ClientMessagePage from "./Components/Klant/ClientMessagePage";
 import HoeWerktHet from "./Components/HoeWerktHet/HoeWerktHet";
 import NieuweVacature from "./Components/Bedrijf/NieuweVacature";
 import VacaturePage from "./Components/Bedrijf/VacaturePage";
+import Instellingen from "./Components/Instellingen";
 
 function App() {
   return (
@@ -21,17 +22,18 @@ function App() {
 
         <Route path="/gebruiker/aanmaken" element={<AccountRegistration />} />
         <Route path="/gebruiker/dashboard" element={<KlantDash />} />
-
-        <Route path="/bedrijf/aanmaken" element={<RegistrationBus />} />
-        <Route path="/bedrijf/dashboard" element={<BusinessDash />} />
+        <Route path="/gebruiker/berichten" element={<CompanyMessagePage />} />
+        <Route path="/hoe-werkt-het" element={<HoeWerktHet />} />
+        <Route path="/instellingen" element={<Instellingen />} />
         <Route path="/vacature/:jobId" element={<JobPostingDescription />} />
         <Route
           path="/vacature/solliciteer/:casusId"
           element={<CasusReaction />}
         />
+
+        <Route path="/bedrijf/aanmaken" element={<RegistrationBus />} />
+        <Route path="/bedrijf/dashboard" element={<BusinessDash />} />
         <Route path="/bedrijf/berichten" element={<CompanyMessagePage />} />
-        <Route path="/gebruiker/berichten" element={<CompanyMessagePage />} />
-        <Route path="/hoe-werkt-het" element={<HoeWerktHet />} />
         <Route path="/bedrijf/beheer-vacatures" element={<VacaturePage />} />
         <Route path="/bedrijf/nieuwe-vacature" element={<NieuweVacature />} />
       </Routes>

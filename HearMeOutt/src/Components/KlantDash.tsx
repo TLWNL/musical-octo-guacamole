@@ -7,6 +7,7 @@ import JobPosting from "./JobPosting";
 
 // Define the type for a job posting
 interface JobPostingType {
+  id: number;
   title: string;
   company: string;
   location: string;
@@ -20,15 +21,25 @@ const KlantDash: React.FC = () => {
   const navigate = useNavigate(); // Hook to navigate programmatically
 
   // Handle job click
-  const handleJobClick = (): void => {
-    navigate(`/vacature/1`); // Redirect to the job description page
+  const handleJobClick = (id: number): void => {
+    navigate(`/vacature/${id}`);
   };
 
   const jobPostings: JobPostingType[] = [
     {
+      id: 1,
       title: "Verzorger",
       company: "Zorginstelling De Hoop",
       location: "Groningen",
+      salary: "€2500,- / €3000,- per maand",
+      hours: "32 tot 40 uur per maand",
+      isNew: true,
+    },
+    {
+      id: 2,
+      title: "Verzorger",
+      company: "Accuraat Begeleid Wonen",
+      location: "Amsterdam",
       salary: "€2500,- / €3000,- per maand",
       hours: "32 tot 40 uur per maand",
       isNew: true,
@@ -41,7 +52,7 @@ const KlantDash: React.FC = () => {
         <MyNavbar chosenRole="Klant" />
         <Row
           className="mt-5"
-          style={{ paddingTop: "80px", position: "relative" }}
+          style={{ paddingTop: "40px", position: "relative" }}
         >
           <JobFilter />
 
@@ -75,7 +86,7 @@ const KlantDash: React.FC = () => {
                     salary={job.salary}
                     hours={job.hours}
                     isNew={job.isNew}
-                    onClick={() => handleJobClick()} // Trigger click handler with job
+                    onClick={() => handleJobClick(job.id)} // Trigger click handler with job
                   />
                 </Col>
               ))}

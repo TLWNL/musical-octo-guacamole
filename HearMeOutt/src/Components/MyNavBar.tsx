@@ -1,6 +1,6 @@
 import { faBell, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Navbar, Container, Nav, Dropdown } from "react-bootstrap";
+import { Navbar, Container, Nav, Dropdown, Image } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -25,6 +25,19 @@ const MyNavbar = ({ chosenRole }: { chosenRole: "Klant" | "Bedrijf" }) => {
     >
       <Container fluid>
         <Navbar.Brand className="d-flex align-items-center gap-3">
+          <Nav.Link
+            as={Link}
+            to={
+              role === "Klant" ? "/gebruiker/dashboard" : "/bedrijf/dashboard"
+            }
+            style={{ fontSize: "18px" }}
+          >
+            <Image
+              style={{ maxHeight: "50px", marginLeft: "10px" }}
+              src="/Logo-Geentekst.png"
+              className=" ml-4"
+            />
+          </Nav.Link>
           HEAR ME OUT
           <Dropdown>
             <Dropdown.Toggle

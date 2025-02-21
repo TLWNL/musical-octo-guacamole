@@ -11,39 +11,58 @@ interface Job {
 }
 
 // Job data
-const jobsData: Record<string, Job[]> = {
+const jobsData: Record<string, { name: string; content: string }[]> = {
   "1": [
     {
       name: "Vacature verzorger",
       content: `## Vacature: Verzorger bij De Hoop  
-
-**Margriet van Breukelen**, manager bij **zorginstelling De Hoop**, zoekt een verzorger voor een **jonge, oude dame van Thaise afkomst**. Ze houdt van een praatje maken en soms iets te veel.  
-
-### Over de Cliënt  
-- Heeft **hartproblemen** en **stemmingswisselingen**.  
-- Heeft een groot gezin, maar ziet haar kinderen **vrij weinig**. Hierdoor voelt ze zich vaak **eenzaam**.  
-
-### Zorgbehoeften  
-- **Kan niet goed lopen**  
-- **Kan niet alleen baden**  
-- **Eten maken gaat lastig**  
-- **Alleen naar het toilet gaan is moeilijk**`,
+      **Margriet van Breukelen**, manager bij **zorginstelling De Hoop**, zoekt een verzorger...`,
     },
     {
       name: "Wat bieden wij jou",
       content: `- Een warme en ondersteunende werkomgeving  
-- Competitief salaris  
-- Doorgroeimogelijkheden binnen het bedrijf`,
+      - Competitief salaris  
+      - Doorgroeimogelijkheden binnen het bedrijf`,
     },
   ],
   "2": [
     {
       name: "Vacature Introductie",
-      content: "Beschrijving van vacature 2...",
+      content:
+        "We hebben bij ons op de afdeling een jongen van achttien met een crimineel verleden, die bang is voor sociale contacten en moeite heeft met zelfreflectie. We proberen er met medeleven mee om te gaan maar het lijkt alsof hij dwars door ons heen kijkt en onze intenties niet aanvoelt. Voor deze reden zoeken wij een ervaringsdeskundige die hem tijdens zijn reis naar volwassenheid en zelfvoorziening kan begeleiden en ondersteunen.",
     },
     {
       name: "Wat bieden wij jou",
-      content: "Andere voordelen...",
+      content: "Goede doorgroeimogelijkheden",
+    },
+    {
+      name: "Belangrijke punten",
+      content: `Belangrijke informatie om te beschrijven in het audiofragment:  
+      - Opleidingsachtergrond  
+      - Werkervaring  
+      - Kwaliteiten als sociaal werker  
+      - Valkuilen als sociaal werker  
+      - Persoonlijke doelen om in de toekomst aan te werken`,
+    },
+    {
+      name: "Welke kwaliteiten verwachten wij van je",
+      content: `- Een luisterend oor zijn  
+- Teamgericht kunnen werken  
+- Oplossend vermogen hebben  
+- Het op kunnen bouwen van relaties  
+- Initiatief kunnen nemen om een netwerk te bouwen  
+- Een vertrouwenspersoon zijn  
+- Vorming en opvoeding kunnen leveren, zowel als educatie en voorlichting  
+- Een brug zijn naar het sociale leven`,
+    },
+
+    {
+      name: "Ervaring",
+      content: ` 
+      - Ervaring met grensoverschrijdend gedrag  
+      - Ervaring bij het omgaan met weerstand  
+      - Verwachtingen over Accuraat Begeleid Wonen  
+      - Kennis over de doelgroep`,
     },
   ],
 };

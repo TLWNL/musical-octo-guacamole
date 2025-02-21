@@ -53,7 +53,7 @@ const BusinessDash: React.FC = () => {
         <MyNavbar chosenRole="Bedrijf" />
         <Row
           className="mt-5"
-          style={{ paddingTop: "80px", position: "relative" }}
+          style={{ paddingTop: "40px", position: "relative" }}
         >
           <JobFilter />
 

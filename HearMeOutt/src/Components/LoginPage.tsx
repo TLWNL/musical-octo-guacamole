@@ -113,7 +113,10 @@ const LoginPage = () => {
               xs={12}
               md={7}
               className="d-flex flex-column justify-content-center align-items-center bg-primary text-white"
-            ></Col>
+            >
+              {" "}
+              <Image src="LogoWitAchtergrond.png" alt="Description" fluid />
+            </Col>
 
             <Col
               xs={12}
@@ -124,7 +127,11 @@ const LoginPage = () => {
                 className="form-email"
                 style={{ width: "100%", maxWidth: "400px" }}
               >
-                <Image src="https://picsum.photos/300/200" className="mb-2" />
+                <Image
+                  style={{ maxHeight: "200px" }}
+                  src="Logo-Geentekst.png"
+                  className="mb-2"
+                />
                 <h1>Welkom</h1>
 
                 <p className="text-center">

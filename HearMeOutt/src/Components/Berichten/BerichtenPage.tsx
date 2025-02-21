@@ -47,7 +47,7 @@ function BerichtenPage() {
             style={{ height: "100%" }}
           >
             <div className="h-100 d-flex flex-column align-items-center justify-content-center text-muted">
-              <SimpleChat />
+              <SimpleChat role="Klant" />
             </div>
           </Card>
         </Col>
