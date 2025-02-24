@@ -6,7 +6,7 @@ function ClientMessagePage() {
     <>
       {" "}
       <MyNavbar chosenRole="Klant" />
-      <BerichtenPage></BerichtenPage>
+      <BerichtenPage role="Klant"></BerichtenPage>
     </>
   );
 }
