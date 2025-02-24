@@ -1,13 +1,13 @@
 import BerichtenPage from "../Berichten/BerichtenPage";
 import MyNavbar from "../MyNavBar";
 
-function CompanyMessagePage() {
+function MessagePage({ chosenRole }: { chosenRole: "Klant" | "Bedrijf" }) {
   return (
     <>
-      <MyNavbar chosenRole="Bedrijf" />
-      <BerichtenPage></BerichtenPage>
+      <MyNavbar chosenRole={chosenRole} />
+      <BerichtenPage role={chosenRole}></BerichtenPage>
     </>
   );
 }
 
-export default CompanyMessagePage;
+export default MessagePage;

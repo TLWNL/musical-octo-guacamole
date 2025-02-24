@@ -1,14 +1,22 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import RegistrationForm from "./RegistrationForm";
 
 function RegistrationBus() {
   return (
     <>
-      <Container fluid>
+      <Container
+        fluid
+        style={{
+          maxWidth: "1200px", // Maximum width for large screens
+          margin: "0 auto", // Center the container
+        }}
+      >
         <Row>
           <Col
+            xs={12}
             md={{ span: 4 }}
-            className="mt-4 ms-4 p-3 d-flex flex-column"
+            className="mt-4 p-3 d-flex flex-column"
             style={{
               background: "#424B5A",
               height: "95vh",
@@ -17,7 +25,7 @@ function RegistrationBus() {
             }}
           >
             <Row style={{ height: "280px" }}>
-              <Col md={12} className="mb-4 mt-1">
+              <Col xs={12} className="mb-4 mt-1">
                 <h2
                   className="mb-4"
                   style={{ fontSize: "25px", textAlign: "left" }}
@@ -28,7 +36,7 @@ function RegistrationBus() {
             </Row>
 
             <Row>
-              <Col md={{ span: 9 }} className="mt-4 mb-4">
+              <Col xs={12} md={9} className="mt-4 mb-4">
                 <h2
                   style={{
                     fontSize: "40px",
@@ -46,7 +54,7 @@ function RegistrationBus() {
             </Row>
 
             <Row>
-              <Col md={11} className="mt-4">
+              <Col xs={12} md={11} className="mt-4">
                 <p
                   style={{
                     fontSize: "18px",
@@ -61,8 +69,8 @@ function RegistrationBus() {
               </Col>
             </Row>
           </Col>
-          <Col md="7">
-            <RegistrationForm></RegistrationForm>
+          <Col xs={12} md={7} className="mt-4">
+            <RegistrationForm />
           </Col>
         </Row>
       </Container>

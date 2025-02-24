@@ -56,8 +56,8 @@ const VacaturePage: React.FC = () => {
         <Row>
           <Col md={4}>
             <JobPosting
-              title="Web Developer"
-              company="TechCorp"
+              title="Verzorger"
+              company="De Hoop"
               location="Amsterdam"
               salary="€3,500 - €4,500"
               hours="40 uur"
@@ -67,23 +67,12 @@ const VacaturePage: React.FC = () => {
           </Col>
           <Col md={4}>
             <JobPosting
-              title="Marketing Specialist"
-              company="MarketHub"
+              title="Verzorger"
+              company="Accuraat Begeleid Wonen"
               location="Rotterdam"
               salary="€2,800 - €3,500"
               hours="40 uur"
               isNew={false}
-              onClick={() => console.log("Job clicked")}
-            />
-          </Col>
-          <Col md={4}>
-            <JobPosting
-              title="Product Manager"
-              company="InnovateX"
-              location="Utrecht"
-              salary="€4,000 - €5,200"
-              hours="40 uur"
-              isNew={true}
               onClick={() => console.log("Job clicked")}
             />
           </Col>

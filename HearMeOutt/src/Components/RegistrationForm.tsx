@@ -11,7 +11,7 @@ import {
   Tooltip,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import RecordingComponent from "./Vacature/RecordingComponent"; // Ensure this component is correctly imported
+import RecordingComponent from "./Vacature/RecordingComponent";
 import { FaQuestionCircle } from "react-icons/fa";
 
 const RegistrationForm: React.FC = () => {
@@ -29,19 +29,12 @@ const RegistrationForm: React.FC = () => {
     cv: null as File | null,
   });
 
-  const handleButtonClick = (button: string) => {
-    setSelectedButton(button);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setFormData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleDropdownChange = (name: string, value: string) => {
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
@@ -64,14 +57,14 @@ const RegistrationForm: React.FC = () => {
 
   return (
     <Container style={{ minHeight: "100vh", paddingBottom: "20px" }}>
-      <Row className="align-items-center mt-5 ms-5">
-        <Col md={8} className="text-start">
+      <Row className="align-items-center mt-5 ">
+        <Col md={8}>
           <h2>Registreer je hier</h2>
         </Col>
         <Col md={4} className="text-end">
           <OverlayTrigger
             placement="top"
-            overlay={<Tooltip id="tooltip">Bekijk instructievideo</Tooltip>}
+            overlay={<Tooltip>Bekijk instructievideo</Tooltip>}
           >
             <Button variant="dark" onClick={() => setShowVideo(true)}>
               <FaQuestionCircle size={24} />
@@ -79,6 +72,7 @@ const RegistrationForm: React.FC = () => {
           </OverlayTrigger>
         </Col>
       </Row>
+
       <Modal show={showVideo} onHide={() => setShowVideo(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Instructievideo</Modal.Title>
@@ -92,106 +86,97 @@ const RegistrationForm: React.FC = () => {
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
+            style={{ maxWidth: "90%" }}
           ></iframe>
         </Modal.Body>
       </Modal>
-      <Row>
-        <Col md={3} className="mt-4">
+
+      <Row className="mt-4">
+        <Col md={3}>
           <p style={{ fontSize: "14px" }}>Waar zoek je naar?</p>
         </Col>
       </Row>
+
       <Row>
-        <Col md={6} className="ms-5">
-          <ButtonGroup
-            aria-label="StageWerk"
-            size="lg"
-            className="border p-1 w-100"
-          >
+        <Col md={6} className="">
+          <ButtonGroup className="d-flex w-100">
             <Button
-              variant={selectedButton === "stage" ? "dark" : "white"}
-              onClick={() => handleButtonClick("stage")}
-              className="border w-100"
-              size="lg"
+              variant={selectedButton === "stage" ? "dark" : "light"}
+              onClick={() => setSelectedButton("stage")}
+              className="w-50"
             >
               STAGE
             </Button>
             <Button
-              variant={selectedButton === "werk" ? "dark" : "white"}
-              onClick={() => handleButtonClick("werk")}
-              className="border w-100"
-              size="lg"
+              variant={selectedButton === "werk" ? "dark" : "light"}
+              onClick={() => setSelectedButton("werk")}
+              className="w-50"
             >
               WERK
             </Button>
           </ButtonGroup>
         </Col>
       </Row>
-      <Row className="mt-4 mb-3 ms-5">
-        <Col md={6}>
+
+      <Row className="mt-4 ">
+        <Col md={6} className="mb-3">
           <Form.Group controlId="firstName">
             <Form.Label>Voornaam</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Voornaam"
               name="firstName"
               value={formData.firstName}
               onChange={handleInputChange}
-              size="lg"
             />
           </Form.Group>
         </Col>
-        <Col md={6}>
+        <Col md={6} className="mb-3">
           <Form.Group controlId="lastName">
             <Form.Label>Achternaam</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Achternaam"
               name="lastName"
               value={formData.lastName}
               onChange={handleInputChange}
-              size="lg"
             />
           </Form.Group>
         </Col>
       </Row>
-      <Row className="mt-4  mb-3 ms-5">
-        <Col md={6}>
+
+      <Row className="mt-2">
+        <Col md={6} className="mb-3">
           <Form.Group controlId="email">
             <Form.Label>E-mail adres</Form.Label>
             <Form.Control
               type="email"
-              placeholder="E-mail adres"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              size="lg"
             />
           </Form.Group>
         </Col>
-        <Col md={6}>
+        <Col md={6} className="mb-3">
           <Form.Group controlId="password">
             <Form.Label>Wachtwoord</Form.Label>
             <Form.Control
               type="password"
-              placeholder="Wachtwoord"
               name="password"
               value={formData.password}
               onChange={handleInputChange}
-              size="lg"
             />
           </Form.Group>
         </Col>
       </Row>
-      <Row className="mt-4  mb-3 ms-5">
-        <Col md={6}>
+
+      <Row className="mt-2">
+        <Col md={6} className="mb-3">
           <Form.Group controlId="industry">
             <Form.Label>In welke Branche zit je?</Form.Label>
             <Form.Control
               as="select"
               name="industry"
               value={formData.industry}
-              onChange={(e) => handleDropdownChange("industry", e.target.value)}
-              size="lg"
+              onChange={handleInputChange}
             >
               <option>-- Kies een branche --</option>
               <option>IT</option>
@@ -201,87 +186,44 @@ const RegistrationForm: React.FC = () => {
             </Form.Control>
           </Form.Group>
         </Col>
-        <Col md={6}>
+        <Col md={6} className="mb-3">
           <Form.Group controlId="age">
             <Form.Label>Leeftijd</Form.Label>
             <Form.Control
               type="number"
-              placeholder="Leeftijd"
               name="age"
               value={formData.age}
               onChange={handleInputChange}
-              size="lg"
             />
           </Form.Group>
         </Col>
       </Row>
-      <Row className="mt-4  mb-3 ms-5">
-        <Col md={6} className="mt-2">
-          <Form.Group controlId="region">
-            <Form.Label>In welke regio woon je?</Form.Label>
-            <Form.Control
-              as="select"
-              name="region"
-              value={formData.region}
-              onChange={(e) => handleDropdownChange("region", e.target.value)}
-              size="lg"
-            >
-              <option>-- Kies een regio --</option>
-              <option>Amsterdam</option>
-              <option>Rotterdam</option>
-              <option>Utrecht</option>
-              <option>Den Haag</option>
-            </Form.Control>
-          </Form.Group>
-        </Col>
-        <Col md={6}>
-          <Form.Group controlId="travelDistance">
-            <Form.Label>Hoe ver ben je bereid te reizen?</Form.Label>
-            <Form.Control
-              as="select"
-              name="travelDistance"
-              value={formData.travelDistance}
-              onChange={(e) =>
-                handleDropdownChange("travelDistance", e.target.value)
-              }
-              size="lg"
-            >
-              <option>-- Kies een afstand --</option>
-              <option>5 km</option>
-              <option>10 km</option>
-              <option>20 km</option>
-              <option>50 km</option>
-            </Form.Control>
-          </Form.Group>
-        </Col>
-      </Row>
-      <Row className="mt-4 ms-5">
-        <Col md={6}>
+
+      <Row className="mt-2">
+        <Col md={6} className="mb-3">
           <Form.Group controlId="cv">
             <Form.Label>Upload je CV (PDF)</Form.Label>
             <Form.Control
               type="file"
               accept=".pdf"
               onChange={handleFileChange}
-              size="lg"
             />
+            {formData.cv && (
+              <small className="text-muted mt-1">
+                Geselecteerd: {formData.cv.name}
+              </small>
+            )}
           </Form.Group>
         </Col>
-        <Col md={6}>
-          <Row>
-            <Col md={2}>Test</Col>
-            <Col md={10}>
-              {" "}
-              <RecordingComponent />
-            </Col>
-          </Row>
+        <Col md={6} className="mb-3">
+          <RecordingComponent />
         </Col>
       </Row>
 
-      <Row className="mt-1 ms-5" style={{ paddingTop: "10px" }}>
+      <Row className="mt-3">
         <Col md={12}>
-          <Link to="/gebruiker/dashboard" style={{ textDecoration: "none" }}>
-            <Button variant="dark" type="submit" className="w-100" size="lg">
+          <Link to="/gebruiker/dashboard">
+            <Button variant="dark" type="submit" className="w-100">
               Registreren
             </Button>
           </Link>

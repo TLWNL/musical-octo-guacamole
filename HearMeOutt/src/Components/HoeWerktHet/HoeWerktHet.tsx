@@ -17,10 +17,10 @@ const HoeWerktHet: React.FC = () => {
               Hoe werkt het
             </h2>
             <p className="text-muted" style={{ fontSize: "1.25rem" }}>
-              Lorem ipsum dolet sit amet.
+              Welkom bij HearMeOutt
               <br />
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna.
+              Met ons platform kan je gemakkelijk solliciteren met gebruik van
+              spraakmemos
             </p>
             <div className="d-flex justify-content-left mt-4">
               <Button variant="dark" className="me-3" size="lg">
@@ -42,15 +42,15 @@ const HoeWerktHet: React.FC = () => {
             <div className="d-flex flex-column gap-4">
               <Step
                 title="Zoek een vacature"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
+                description="Gebruik onze site on vacatures te vinden."
               />
               <Step
                 title="Meld je aan met je stem"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
+                description="Lees en beantwoord een casus, waarna je antwoord naar de werkgever gestuurd wordt.."
               />
               <Step
                 title="Ga op uitnodiging"
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna."
+                description="De werkgever neemt contact met je op."
               />
             </div>
           </Col>

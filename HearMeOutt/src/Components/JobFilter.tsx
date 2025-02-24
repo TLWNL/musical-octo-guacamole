@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Row, Col, Form, Dropdown, Button } from "react-bootstrap";
+import { Row, Col, Form, Dropdown, Button, Accordion } from "react-bootstrap";
 
 function JobFilter() {
   const filters: string[] = [
@@ -29,45 +29,80 @@ function JobFilter() {
   };
 
   return (
-    <Col
-      md={{ span: 3 }}
-      className="ms-4 p-3 d-flex flex-column"
-      style={{
-        background: "#879095",
-        height: "85vh",
-        borderRadius: "15px",
-        color: "white",
-      }}
-    >
-      <Row>
-        <Col md={8} className="mb-4 mt-1">
-          <h2 style={{ fontSize: "25px", textAlign: "left" }}>Filters</h2>
-        </Col>
-        <Col md={4} className="mt-1">
-          <h2 style={{ fontSize: "20px", textAlign: "left" }}>Reset Filters</h2>
-        </Col>
-      </Row>
+    <>
+      <Accordion defaultActiveKey="" className="d-md-none">
+        {" "}
+        {/* Only for mobile */}
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>Filters</Accordion.Header>
+          <Accordion.Body>
+            {filters.map((filter, index) => (
+              <Form.Group className="mb-3" key={index}>
+                <Form.Label>{filter}</Form.Label>
+                <Dropdown
+                  onSelect={(eventKey) => handleSelect(filter, eventKey)}
+                >
+                  <Dropdown.Toggle variant="light" className="w-100">
+                    {selectedOptions[filter]}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item eventKey="Optie 1">Optie 1</Dropdown.Item>
+                    <Dropdown.Item eventKey="Optie 2">Optie 2</Dropdown.Item>
+                    <Dropdown.Item eventKey="Optie 3">Optie 3</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Form.Group>
+            ))}
+            <Button variant="primary" className="w-100">
+              Pas toe
+            </Button>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
 
-      {filters.map((filter, index) => (
-        <Form.Group className="mb-3 mt-4" key={index}>
-          <Form.Label>{filter}</Form.Label>
-          <Dropdown onSelect={(eventKey) => handleSelect(filter, eventKey)}>
-            <Dropdown.Toggle variant="light" className="w-100">
-              {selectedOptions[filter]}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item eventKey="Optie 1">Optie 1</Dropdown.Item>
-              <Dropdown.Item eventKey="Optie 2">Optie 2</Dropdown.Item>
-              <Dropdown.Item eventKey="Optie 3">Optie 3</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </Form.Group>
-      ))}
+      <Col
+        md={8}
+        xs={12}
+        className="p-3 d-none d-md-flex flex-column"
+        style={{
+          background: "#879095",
+          borderRadius: "15px",
+          color: "white",
+          height: "85vh",
+        }}
+      >
+        <Row className="d-flex align-items-center">
+          <Col md={8}>
+            <h2 className="fs-5 text-start">Filters</h2>
+          </Col>
+          <Col md={4} className="text-end">
+            <Button variant="outline-light" size="sm">
+              Reset
+            </Button>
+          </Col>
+        </Row>
 
-      <Button variant="primary" className="mt-auto">
-        Pas toe
-      </Button>
-    </Col>
+        {filters.map((filter, index) => (
+          <Form.Group className="mb-3" key={index}>
+            <Form.Label>{filter}</Form.Label>
+            <Dropdown onSelect={(eventKey) => handleSelect(filter, eventKey)}>
+              <Dropdown.Toggle variant="light" className="w-100">
+                {selectedOptions[filter]}
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item eventKey="Optie 1">Optie 1</Dropdown.Item>
+                <Dropdown.Item eventKey="Optie 2">Optie 2</Dropdown.Item>
+                <Dropdown.Item eventKey="Optie 3">Optie 3</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+          </Form.Group>
+        ))}
+
+        <Button variant="primary" className="mt-auto">
+          Pas toe
+        </Button>
+      </Col>
+    </>
   );
 }
 

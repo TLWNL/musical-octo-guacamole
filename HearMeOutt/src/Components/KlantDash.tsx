@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Col, Container, Row, Dropdown, ButtonGroup } from "react-bootstrap";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import MyNavbar from "./MyNavBar";
 import JobFilter from "./JobFilter";
 import JobPosting from "./JobPosting";
 
-// Define the type for a job posting
 interface JobPostingType {
   id: number;
   title: string;
@@ -17,10 +16,9 @@ interface JobPostingType {
 }
 
 const KlantDash: React.FC = () => {
-  const [sortOption, setSortOption] = useState<string>("Populariteit"); // State for sorting option
-  const navigate = useNavigate(); // Hook to navigate programmatically
+  const [sortOption, setSortOption] = useState<string>("Populariteit");
+  const navigate = useNavigate();
 
-  // Handle job click
   const handleJobClick = (id: number): void => {
     navigate(`/vacature/${id}`);
   };
@@ -47,54 +45,61 @@ const KlantDash: React.FC = () => {
   ];
 
   return (
-    <>
-      <Container fluid>
-        <MyNavbar chosenRole="Klant" />
-        <Row
-          className="mt-5"
-          style={{ paddingTop: "40px", position: "relative" }}
-        >
+    <Container fluid>
+      <MyNavbar chosenRole="Klant" />
+
+      <Row className="mt-5 px-3" style={{ paddingTop: "40px" }}>
+        {/* Mobile: Filters go above jobs */}
+        <Col xs={12} className="d-md-none">
           <JobFilter />
+        </Col>
 
-          {/* Sort Dropdown Button */}
-          <Col md={7} className="position-relative">
-            <Dropdown as={ButtonGroup} className="end-0 me-3">
-              <Dropdown.Toggle variant="light">
-                Sorteer op {sortOption}
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item onClick={() => setSortOption("Populariteit")}>
-                  Populariteit
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => setSortOption("Salaris")}>
-                  Salaris
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => setSortOption("Locatie")}>
-                  Locatie
-                </Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
+        <Col md={3} className="d-none d-md-block">
+          <JobFilter />
+        </Col>
 
-            {/* Job Postings Grid */}
-            <Row style={{ marginLeft: "120px" }} className="gy-3">
-              {jobPostings.map((job, index) => (
-                <Col key={index} md={6}>
-                  <JobPosting
-                    title={job.title}
-                    company={job.company}
-                    location={job.location}
-                    salary={job.salary}
-                    hours={job.hours}
-                    isNew={job.isNew}
-                    onClick={() => handleJobClick(job.id)} // Trigger click handler with job
-                  />
-                </Col>
-              ))}
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-    </>
+        {/* Job Listings & Sort */}
+        <Col md={9} className="mt-3">
+          <Row className="justify-content-between align-items-center mx-1">
+            <Col xs={12} md="auto" className="mb-3">
+              <Dropdown as={ButtonGroup} className="w-100 w-md-auto">
+                <Dropdown.Toggle variant="light" className="w-100">
+                  Sorteer op {sortOption}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => setSortOption("Populariteit")}>
+                    Populariteit
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => setSortOption("Salaris")}>
+                    Salaris
+                  </Dropdown.Item>
+                  <Dropdown.Item onClick={() => setSortOption("Locatie")}>
+                    Locatie
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+          </Row>
+
+          {/* Job Listings */}
+          <Row className="gy-3">
+            {jobPostings.map((job, index) => (
+              <Col key={index} xs={12} md={6}>
+                <JobPosting
+                  title={job.title}
+                  company={job.company}
+                  location={job.location}
+                  salary={job.salary}
+                  hours={job.hours}
+                  isNew={job.isNew}
+                  onClick={() => handleJobClick(job.id)}
+                />
+              </Col>
+            ))}
+          </Row>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

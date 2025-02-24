@@ -50,17 +50,17 @@ const RegistrationForm: React.FC = () => {
         }}
       >
         <Row>
-          <Col md={12} className="mt-5 ms-5 text-start">
+          <Col xs={12} className="mt-5  text-start">
             <h2>Registreer je hier</h2>
           </Col>
         </Row>
         <Row>
-          <Col md={3} className="mt-4">
+          <Col xs={12} md={3} className="mt-4">
             <p style={{ fontSize: "14px" }}>Waar zoek je naar?</p>
           </Col>
         </Row>
         <Row>
-          <Col md={6} className="ms-5">
+          <Col xs={12} md={6} className="">
             <ButtonGroup aria-label="StageWerk" size="lg" className="p-1 w-100">
               <Button
                 variant={selectedButton === "stage" ? "dark" : "white"}
@@ -89,9 +89,9 @@ const RegistrationForm: React.FC = () => {
             </ButtonGroup>
           </Col>
         </Row>
-        <Row className="mt-4 mb-3 ms-5">
+        <Row className="mt-4 mb-3 ">
           {/* Voornaam and Achternaam */}
-          <Col md={6}>
+          <Col xs={12} md={6}>
             <Form.Group controlId="firstName">
               <Form.Label>Voornaam</Form.Label>
               <Form.Control
@@ -104,7 +104,7 @@ const RegistrationForm: React.FC = () => {
               />
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col xs={12} md={6}>
             <Form.Group controlId="lastName">
               <Form.Label>Achternaam</Form.Label>
               <Form.Control
@@ -118,9 +118,9 @@ const RegistrationForm: React.FC = () => {
             </Form.Group>
           </Col>
         </Row>
-        <Row className="mt-4  mb-3 ms-5">
+        <Row className="mt-4  mb-3 ">
           {/* Email and Wachtwoord */}
-          <Col md={6}>
+          <Col xs={12} md={6}>
             <Form.Group controlId="email">
               <Form.Label>E-mail adres</Form.Label>
               <Form.Control
@@ -133,7 +133,7 @@ const RegistrationForm: React.FC = () => {
               />
             </Form.Group>
           </Col>
-          <Col md={6}>
+          <Col xs={12} md={6}>
             <Form.Group controlId="password">
               <Form.Label>Wachtwoord</Form.Label>
               <Form.Control
@@ -147,9 +147,9 @@ const RegistrationForm: React.FC = () => {
             </Form.Group>
           </Col>
         </Row>
-        <Row className="mt-4  mb-3 ms-5">
+        <Row className="mt-4  mb-3 ">
           {/* Industry Dropdown */}
-          <Col md={6}>
+          <Col xs={12} md={6}>
             <Form.Group controlId="industry">
               <Form.Label>In welke Branche zit je?</Form.Label>
               <Form.Control
@@ -170,7 +170,7 @@ const RegistrationForm: React.FC = () => {
             </Form.Group>
           </Col>
           {/* Age */}
-          <Col md={6}>
+          <Col xs={12} md={6}>
             <Form.Group controlId="age">
               <Form.Label>Leeftijd</Form.Label>
               <Form.Control
@@ -184,9 +184,9 @@ const RegistrationForm: React.FC = () => {
             </Form.Group>
           </Col>
         </Row>
-        <Row className="mt-4  mb-3 ms-5">
+        <Row className="mt-4  mb-3 ">
           {/* Region Dropdown */}
-          <Col md={6} className="mt-2">
+          <Col xs={12} md={6} className="mt-2">
             <Form.Group controlId="region">
               <Form.Label>In welke regio ben je gevestigd?</Form.Label>
               <Form.Control
@@ -205,7 +205,7 @@ const RegistrationForm: React.FC = () => {
             </Form.Group>
           </Col>
           {/* Travel Distance Dropdown */}
-          <Col md={6}>
+          <Col xs={12} md={6}>
             <Form.Group controlId="travelDistance">
               <Form.Label>Hoe ver ben je bereid te reizen?</Form.Label>
               <Form.Control
@@ -226,11 +226,19 @@ const RegistrationForm: React.FC = () => {
             </Form.Group>
           </Col>
         </Row>
-        <Row className="mt-4 ms-5" style={{ paddingTop: "120px" }}>
-          <Col md={12}>
+
+        <Row className="mt-4 " style={{ paddingTop: "120px" }}>
+          <Col xs={12} className="mb-4">
             <Link to="/bedrijf/dashboard" style={{ textDecoration: "none" }}>
               <Button variant="dark" type="submit" className="w-100" size="lg">
                 Registreren
+              </Button>
+            </Link>
+          </Col>
+          <Col xs={12}>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <Button variant="dark" type="submit" className="w-100" size="lg">
+                Terug
               </Button>
             </Link>
           </Col>

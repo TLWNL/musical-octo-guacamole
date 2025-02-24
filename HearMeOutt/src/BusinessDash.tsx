@@ -15,13 +15,41 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const BusinessDash: React.FC = () => {
+  interface JobPostingType {
+    id: number;
+    title: string;
+    company: string;
+    location: string;
+    salary: string;
+    hours: string;
+    isNew?: boolean;
+  }
   const [sortOption, setSortOption] = useState<string>("Populariteit");
   const [showModal, setShowModal] = useState<boolean>(false);
   const [selectedCard, setSelectedCard] = useState<any | null>(null);
   const [checkedItems, setCheckedItems] = useState<{ [key: number]: boolean }>(
     {}
   ); // State for checkboxes
-
+  const jobPostings: JobPostingType[] = [
+    {
+      id: 1,
+      title: "Verzorger",
+      company: "Zorginstelling De Hoop",
+      location: "Groningen",
+      salary: "€2500,- / €3000,- per maand",
+      hours: "32 tot 40 uur per maand",
+      isNew: true,
+    },
+    {
+      id: 2,
+      title: "Verzorger",
+      company: "Accuraat Begeleid Wonen",
+      location: "Amsterdam",
+      salary: "€2500,- / €3000,- per maand",
+      hours: "32 tot 40 uur per maand",
+      isNew: true,
+    },
+  ];
   // Toggle modal visibility
   const handleShowModal = (card: any, event: React.MouseEvent<HTMLElement>) => {
     // Check if the click target is an audio player
@@ -55,53 +83,43 @@ const BusinessDash: React.FC = () => {
           className="mt-5"
           style={{ paddingTop: "40px", position: "relative" }}
         >
-          <JobFilter />
+          <Col xs={12} className="d-md-none">
+            <JobFilter />
+          </Col>
+
+          <Col md={3} className="d-none d-md-block">
+            <JobFilter />
+          </Col>
 
           {/* Sort Dropdown Button */}
-          <Col md={{ span: 8 }} className="position-relative">
-            <Dropdown as={ButtonGroup} className="end-4 me-3">
-              <Row>
-                <Col>
-                  <p>Sorteer op </p>
-                </Col>
-                <Col>
-                  <Dropdown.Toggle variant="light">
-                    {sortOption}
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item
-                      onClick={() => setSortOption("Populariteit")}
-                    >
-                      Populariteit
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick={() => setSortOption("Salaris")}>
-                      Salaris
-                    </Dropdown.Item>
-                    <Dropdown.Item onClick={() => setSortOption("Locatie")}>
-                      Locatie
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Col>
-              </Row>
-            </Dropdown>
-
+          <Col md={6} sm={12} className="position-relative">
             {/* Job Postings Grid */}
-            <Row style={{ marginLeft: "120px" }} className="mt-4 gy-3">
-              {Array.from({ length: 6 }, (_, index) => (
-                <Col md={6} key={index}>
-                  <ResponseCard
-                    audioSrc="/casus1.opus"
-                    name={`Kandidaat #${index + 1}`}
-                    onClick={(event: React.MouseEvent<HTMLElement>) =>
-                      handleShowModal(
-                        {
-                          name: `Kandidaat #${index + 1}`,
-                          audioSrc: "/casus2.opus",
-                        },
-                        event
-                      )
-                    }
-                  />
+            <Row className="mt-4 gy-3">
+              {jobPostings.map((job) => (
+                <Col xs={12} sm={6} md={6} key={job.id}>
+                  <h4>
+                    {job.title} - {job.company}
+                  </h4>
+
+                  <Row className="gy-3">
+                    {Array.from({ length: 4 }, (_, i) => (
+                      <Col xs={12} key={`${job.id}-${i}`}>
+                        <ResponseCard
+                          audioSrc="/casus1.opus"
+                          name={`Kandidaat ${i + 1} voor ${job.title}`}
+                          onClick={(event: React.MouseEvent<HTMLElement>) =>
+                            handleShowModal(
+                              {
+                                name: `Kandidaat ${i + 1} voor ${job.title}`,
+                                audioSrc: "/casus1.opus",
+                              },
+                              event
+                            )
+                          }
+                        />
+                      </Col>
+                    ))}
+                  </Row>
                 </Col>
               ))}
             </Row>
@@ -116,7 +134,7 @@ const BusinessDash: React.FC = () => {
         </Modal.Header>
         <Modal.Body>
           <Row className="mb-4">
-            <Col>
+            <Col xs={12}>
               <ResponseCard
                 name={selectedCard?.name}
                 audioSrc={selectedCard?.audioSrc}
@@ -127,7 +145,7 @@ const BusinessDash: React.FC = () => {
 
           {/* Uitnodigen Voor text */}
           <Row className="mb-4 align-items-center">
-            <Col>
+            <Col xs={6}>
               <h5>Uitnodigen Voor</h5>
             </Col>
 
@@ -141,8 +159,8 @@ const BusinessDash: React.FC = () => {
 
           {/* Display additional 5 cards */}
           <Row className="gy-3">
-            {Array.from({ length: 5 }, (_, index) => (
-              <Col md={12} key={index}>
+            {Array.from({ length: 1 }, (_, index) => (
+              <Col xs={12} key={index}>
                 <Row
                   style={{
                     border: "1px solid #ddd",
@@ -152,25 +170,25 @@ const BusinessDash: React.FC = () => {
                   }}
                 >
                   <Col
-                    md={{ span: 2, offset: 1 }}
+                    xs={3}
                     className="d-flex justify-content-center align-items-center"
                   >
                     <FontAwesomeIcon size="3x" icon={faUser} />
                   </Col>
-                  <Col md={8}>
+                  <Col xs={9}>
                     <Row>
-                      <p>Assistent manager groenteboer</p>
+                      <p>Gesprek met HR</p>
                     </Row>
                     <Row>
                       <p>
-                        <b>Rabobank Groningen</b>
+                        <b>Zorginstelling De Hoop </b>
                       </p>
                     </Row>
                   </Col>
 
                   {/* Checkbox Column */}
                   <Col
-                    md={1}
+                    xs={3}
                     className="d-flex justify-content-center align-items-center"
                   >
                     <input

@@ -20,14 +20,14 @@ const reviews: Review[] = [
   {
     id: 2,
     name: "Bob Smith",
-    text: "Great service and fast delivery. Very satisfied.",
-    job: "Nu werkend als ICT’er",
+    text: "Het was gemakkelijk om te solliciteren en nu heb ik een gesprek gepland!",
+    job: "Nu werkend als verzorger",
   },
   {
     id: 3,
     name: "Charlie Davis",
-    text: "Decent quality for the price. Would buy again.",
-    job: "Nu werkend als ICT’er",
+    text: "Eindelijk zonder nonsense kunnen solliciteren!",
+    job: "Nu werkend als manager",
   },
 ];
 
@@ -39,18 +39,24 @@ const ReviewsCarousel: React.FC = () => {
         borderRadius: "10px",
         backgroundColor: "#6C7584",
       }}
+      indicators={false}
     >
       {reviews.map((review) => (
         <Carousel.Item key={review.id} interval={4000}>
           {/* Center Content */}
           <div
-            className="d-flex flex-column justify-content-center text-start"
-            style={{ height: "190px", padding: "30px" }}
+            className="d-flex flex-column justify-content-center text-start px-3 py-3"
+            style={{ height: "190px" }}
           >
-            <p className="text-white mb-4">{review.text}</p>
+            <p
+              className="text-white mb-3"
+              style={{ fontSize: "16px", wordWrap: "break-word" }}
+            >
+              {review.text}
+            </p>
 
-            {/* Row for Avatar & Text - Align Left */}
-            <div className="d-flex align-items-center">
+            {/* Row for Avatar & Text - Mobile-friendly */}
+            <div className="d-flex align-items-center flex-wrap">
               {/* FontAwesome User Icon */}
               <FontAwesomeIcon
                 icon={faUserCircle}

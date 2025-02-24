@@ -6,49 +6,40 @@ import { useState } from "react";
 
 const MyNavbar = ({ chosenRole }: { chosenRole: "Klant" | "Bedrijf" }) => {
   const [role, setRole] = useState<"Klant" | "Bedrijf">(chosenRole);
-  const navigate = useNavigate(); // Use navigate for redirection
+  const navigate = useNavigate();
 
   const handleRoleChange = (newRole: "Klant" | "Bedrijf") => {
     setRole(newRole);
-    const newPath =
-      newRole === "Klant" ? "/gebruiker/dashboard" : "/bedrijf/dashboard";
-    navigate(newPath);
+    navigate(
+      newRole === "Klant" ? "/gebruiker/dashboard" : "/bedrijf/dashboard"
+    );
   };
 
   return (
-    <Navbar
-      bg="light"
-      variant="light"
-      expand="lg"
-      fixed="top"
-      style={{ width: "100%" }}
-    >
+    <Navbar bg="light" variant="light" expand="lg" fixed="top" className="px-3">
       <Container fluid>
-        <Navbar.Brand className="d-flex align-items-center gap-3">
+        <Navbar.Brand className="d-flex align-items-center gap-2">
           <Nav.Link
             as={Link}
             to={
               role === "Klant" ? "/gebruiker/dashboard" : "/bedrijf/dashboard"
             }
-            style={{ fontSize: "18px" }}
+            className="d-flex align-items-center"
           >
             <Image
-              style={{ maxHeight: "50px", marginLeft: "10px" }}
               src="/Logo-Geentekst.png"
-              className=" ml-4"
+              alt="Logo"
+              style={{ maxHeight: "40px" }}
             />
           </Nav.Link>
-          HEAR ME OUT
+          <span className="fw-bold d-none d-md-block">HEAR ME OUT</span>
+        </Navbar.Brand>
+
+        <div className="d-flex align-items-center gap-3">
           <Dropdown>
             <Dropdown.Toggle
               variant="light"
-              id="role-dropdown"
-              style={{
-                padding: "0.5rem",
-                fontWeight: "600",
-                border: "1px solid #ddd",
-                borderRadius: "5px",
-              }}
+              className="fw-semibold border px-3 py-1"
             >
               {role}
             </Dropdown.Toggle>
@@ -61,33 +52,26 @@ const MyNavbar = ({ chosenRole }: { chosenRole: "Klant" | "Bedrijf" }) => {
               </Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-        </Navbar.Brand>
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse
-          id="basic-navbar-nav"
-          className="d-flex justify-content-center"
-        >
-          <Nav className="d-flex gap-5">
+          <Navbar.Toggle aria-controls="navbar-menu" />
+        </div>
+
+        <Navbar.Collapse id="navbar-menu" className="mt-2 mt-lg-0">
+          <Nav className="mx-auto gap-3">
             <Nav.Link
               as={Link}
               to={
                 role === "Klant" ? "/gebruiker/dashboard" : "/bedrijf/dashboard"
               }
-              style={{ fontSize: "18px" }}
             >
               DASHBOARD
             </Nav.Link>
             {role === "Bedrijf" && (
-              <Nav.Link
-                as={Link}
-                to="/bedrijf/beheer-vacatures"
-                style={{ fontSize: "18px" }}
-              >
+              <Nav.Link as={Link} to="/bedrijf/beheer-vacatures">
                 VACATURES
               </Nav.Link>
             )}
-            <Nav.Link as={Link} to="/instellingen" style={{ fontSize: "18px" }}>
+            <Nav.Link as={Link} to="/instellingen">
               INSTELLINGEN
             </Nav.Link>
             <Nav.Link
@@ -95,21 +79,16 @@ const MyNavbar = ({ chosenRole }: { chosenRole: "Klant" | "Bedrijf" }) => {
               to={
                 role === "Klant" ? "/gebruiker/berichten" : "/bedrijf/berichten"
               }
-              style={{ fontSize: "18px" }}
             >
               BERICHTEN
             </Nav.Link>
-            <Nav.Link
-              as={Link}
-              to="/hoe-werkt-het"
-              style={{ fontSize: "18px" }}
-            >
+            <Nav.Link as={Link} to="/hoe-werkt-het">
               HOE WERKT HET
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>
 
-        <div className="d-flex gap-3">
+        <div className="d-flex align-items-center gap-3">
           <FontAwesomeIcon icon={faBell} size="lg" className="text-dark" />
           <FontAwesomeIcon icon={faUser} size="lg" className="text-dark" />
         </div>

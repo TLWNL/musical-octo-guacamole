@@ -22,7 +22,10 @@ function App() {
 
         <Route path="/gebruiker/aanmaken" element={<AccountRegistration />} />
         <Route path="/gebruiker/dashboard" element={<KlantDash />} />
-        <Route path="/gebruiker/berichten" element={<CompanyMessagePage />} />
+        <Route
+          path="/gebruiker/berichten"
+          element={<CompanyMessagePage chosenRole="Klant" />}
+        />
         <Route path="/hoe-werkt-het" element={<HoeWerktHet />} />
         <Route path="/instellingen" element={<Instellingen />} />
         <Route path="/vacature/:jobId" element={<JobPostingDescription />} />
@@ -33,7 +36,10 @@ function App() {
 
         <Route path="/bedrijf/aanmaken" element={<RegistrationBus />} />
         <Route path="/bedrijf/dashboard" element={<BusinessDash />} />
-        <Route path="/bedrijf/berichten" element={<CompanyMessagePage />} />
+        <Route
+          path="/bedrijf/berichten"
+          element={<CompanyMessagePage chosenRole="Bedrijf" />}
+        />
         <Route path="/bedrijf/beheer-vacatures" element={<VacaturePage />} />
         <Route path="/bedrijf/nieuwe-vacature" element={<NieuweVacature />} />
       </Routes>

@@ -12,3 +12,23 @@
 .vh-60 {
   height: 60vh !important;
 }
+
+@media (max-width: 768px) {
+  .navbar-toggler {
+    padding: 5px 10px;
+    font-size: 1rem;
+  }
+
+  .navbar-nav {
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .navbar-brand span {
+    font-size: 1rem;
+  }
+
+  .dropdown-toggle {
+    font-size: 0.9rem;
+  }
+}

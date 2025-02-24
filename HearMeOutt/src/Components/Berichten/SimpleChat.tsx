@@ -16,6 +16,9 @@ import AudioPlayer from "../AudioPlayer";
 const SimpleChat = ({ role }: { role: "Klant" | "Bedrijf" }) => {
   const [messages, setMessages] = useState<MessageModel[]>([]);
   const [isTyping, setIsTyping] = useState(false);
+  const [selectedVerzorger, setSelectedVerzorger] = useState<string | null>(
+    null
+  );
 
   const getAvatar = (sender: string) => {
     switch (sender) {
@@ -41,11 +44,28 @@ const SimpleChat = ({ role }: { role: "Klant" | "Bedrijf" }) => {
           position: "single",
           type: "custom",
         },
+        {
+          message: "Je bent uitgenodigd voor een gesprek!",
+          sentTime: "just now",
+          sender: "Business",
+          direction: "incoming",
+          position: "single",
+          type: "custom",
+        },
       ]);
     } else {
       setMessages([
         {
-          message: "Hello! Do you accept this request?",
+          message: "Audio Message:",
+          sentTime: "just now",
+          sender: "Client",
+          direction: "incoming",
+          position: "single",
+          type: "custom",
+        },
+
+        {
+          message: "Wil je verder gaan met deze sollicitatie?",
           sentTime: "just now",
           sender: "Business",
           direction: "incoming",
@@ -91,7 +111,7 @@ const SimpleChat = ({ role }: { role: "Klant" | "Bedrijf" }) => {
     setMessages((prevMessages) => [
       ...prevMessages.filter((msg) => msg.type !== "custom"), // Remove waiting message
       {
-        message: `Business has ${decision}ed your request.`,
+        message: `Je hebt de sollicitatie ${decision}.`,
         sentTime: "just now",
         sender: "Business",
         direction: "incoming",
@@ -100,15 +120,30 @@ const SimpleChat = ({ role }: { role: "Klant" | "Bedrijf" }) => {
     ]);
   };
 
+  const handleVerzorgerSelect = (verzorger: string) => {
+    setSelectedVerzorger(verzorger);
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      {
+        message: `You selected ${verzorger}.`,
+        sentTime: "just now",
+        sender: "System",
+        direction: "incoming",
+        position: "single",
+        type: "custom",
+      },
+    ]);
+  };
+
   return (
     <Container
       fluid
-      className="vh-100 d-flex flex-column align-items-center justify-content-center bg-dark"
+      className="vh-100 d-flex flex-column align-items-center justify-content-center bg-dark p-3"
     >
       <Row className="w-100" style={{ maxWidth: "900px" }}>
         <Col xs={12}>
           <Card className="p-3 shadow-lg rounded-4">
-            <MainContainer style={{ height: "75vh", width: "100%" }}>
+            <MainContainer style={{ height: "60vh", width: "100%" }}>
               <ChatContainer>
                 <MessageList
                   typingIndicator={
@@ -117,61 +152,57 @@ const SimpleChat = ({ role }: { role: "Klant" | "Bedrijf" }) => {
                     ) : null
                   }
                 >
-                  {messages.map((msg, index) =>
-                    msg.type === "custom" ? (
+                  {messages.map((msg, index) => {
+                    return msg.type === "custom" &&
+                      index === 0 &&
+                      role === "Bedrijf" ? (
+                      <div
+                        key={index}
+                        className="d-flex flex-column align-items-start mb-3"
+                      >
+                        <div className="d-flex align-items-center">
+                          <AudioPlayer src="/Untitled.mp3" />
+                        </div>
+                      </div>
+                    ) : msg.type === "custom" ? (
                       <div
                         key={index}
                         className="d-flex flex-column align-items-start mb-3"
                       >
                         {role === "Klant" && index === 0 ? (
                           <div className="d-flex align-items-center">
-                            <Avatar
-                              src={getAvatar("Client")}
-                              size="xs"
-                              className="me-2"
-                            />
                             <AudioPlayer src="/Untitled.mp3" />
                           </div>
                         ) : (
                           <div className="d-flex align-items-center">
-                            <Avatar
-                              src={"https://picsum.photos/100/50"}
-                              size="xs"
-                              className="me-2"
-                            />
                             <Message model={msg} />
                           </div>
                         )}
-                        {role === "Bedrijf" && index === 0 && (
+                        {role === "Bedrijf" && index === 1 && (
                           <div className="d-flex gap-2 mt-2">
                             <Button
                               variant="success"
                               size="sm"
-                              onClick={() => handleDecision("accept")}
+                              onClick={() => handleDecision("geaccepteerd")}
                             >
-                              Accept
+                              Accepteer
                             </Button>
                             <Button
                               variant="danger"
                               size="sm"
-                              onClick={() => handleDecision("deny")}
+                              onClick={() => handleDecision("afgewezen")}
                             >
-                              Deny
+                              Wijs af
                             </Button>
                           </div>
                         )}
                       </div>
                     ) : (
                       <div className="d-flex align-items-center" key={index}>
-                        <Avatar
-                          src={"https://picsum.photos/100/50"}
-                          size="sm"
-                          className="me-2"
-                        />
                         <Message model={msg} />
                       </div>
-                    )
-                  )}
+                    );
+                  })}
                 </MessageList>
               </ChatContainer>
             </MainContainer>

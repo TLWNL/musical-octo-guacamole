@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import BerichtenBox from "./BerichtenBox";
 import SimpleChat from "./SimpleChat";
-function BerichtenPage() {
+
+function BerichtenPage({ role }: { role: "Klant" | "Bedrijf" }) {
   const selectedUser = {
-    name: "Assistent manager groenteboer",
+    name: "Verzorger",
     title: "Gebruiker #1234",
   };
 
@@ -16,12 +17,12 @@ function BerichtenPage() {
     >
       <Row className="h-100">
         {/* Left column with messages */}
-        <Col md={3} className="d-flex flex-column">
-          <BerichtenBox />
+        <Col xs={12} md={3} className="d-flex flex-column mb-4 mb-md-0">
+          <BerichtenBox role={role} />
         </Col>
 
         {/* Right column with chat header and window */}
-        <Col md={9} className="d-flex flex-column">
+        <Col xs={12} md={9} className="d-flex flex-column">
           {/* Chat Header */}
           <Card className="p-3 d-flex flex-row align-items-center shadow-sm">
             {/* User icon */}
@@ -47,7 +48,7 @@ function BerichtenPage() {
             style={{ height: "100%" }}
           >
             <div className="h-100 d-flex flex-column align-items-center justify-content-center text-muted">
-              <SimpleChat role="Klant" />
+              <SimpleChat role={role} />
             </div>
           </Card>
         </Col>
