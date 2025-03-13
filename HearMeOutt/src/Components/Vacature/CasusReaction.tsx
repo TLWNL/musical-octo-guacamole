@@ -67,7 +67,7 @@ function CasusReaction() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showModal, setShowModal] = useState(true);
   const [showCompletionModal, setShowCompletionModal] = useState(false);
-
+  const [isRecording, setIsRecording] = useState(false);
   const currentCasus = casusList[currentIndex];
 
   const handleBackButtonClick = () => {

@@ -6,15 +6,6 @@ import RegistrationForm from "./RegistrationForm";
 function AccountRegistration() {
   return (
     <Container fluid style={{ maxWidth: "1200px", margin: "0 auto" }}>
-      {/* Back Button */}
-      <Row>
-        <Col xs={12} className="d-flex justify-content-start mt-3">
-          <Link to="/" style={{ textDecoration: "none" }}>
-            <Button variant="dark">Back</Button>
-          </Link>
-        </Col>
-      </Row>
-
       <Row className="justify-content-center">
         <Col
           xs={12}
@@ -62,7 +53,7 @@ function AccountRegistration() {
             </Col>
           </Row>
 
-          <Row className="mt-auto">
+          <Row className="">
             <Col>
               <ReviewsCarousel />
             </Col>

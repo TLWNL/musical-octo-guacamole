@@ -22,24 +22,6 @@ const steps: StepCardData[] = [
     text: "Onze recruiter belt of mailt je. We bespreken je sollicitatie en je carrièremogelijkheden.",
     icon: <FaHandshake size={100} />,
   },
-  {
-    header: "Header 3",
-    title: "Card 3 Title",
-    text: "This is the text for the third card.",
-    icon: <FaRegPlayCircle size={24} />, // Use any default icon for the other cards
-  },
-  {
-    header: "Header 4",
-    title: "Card 4 Title",
-    text: "This is the text for the fourth card.",
-    icon: <FaRegPlayCircle size={24} />,
-  },
-  {
-    header: "Header 5",
-    title: "Card 5 Title",
-    text: "This is the text for the fifth card.",
-    icon: <FaRegPlayCircle size={24} />,
-  },
 ];
 
 function StepsCards() {

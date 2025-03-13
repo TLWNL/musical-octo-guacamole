@@ -52,6 +52,7 @@ const LoginPage = () => {
         <Col
           md={6}
           className="d-none d-md-flex flex-column justify-content-center align-items-center bg-primary text-white p-4"
+          style={{ height: "100vh" }} // This ensures it takes the full viewport height
         >
           <Image
             src="LogoWitAchtergrond.png"

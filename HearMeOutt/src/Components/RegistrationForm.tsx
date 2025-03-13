@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Row,
   Col,
@@ -6,17 +6,12 @@ import {
   Button,
   Form,
   ButtonGroup,
-  Modal,
-  OverlayTrigger,
-  Tooltip,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import RecordingComponent from "./Vacature/RecordingComponent";
-import { FaQuestionCircle } from "react-icons/fa";
+import Joyride from "react-joyride"; // Import Joyride
 
 const RegistrationForm: React.FC = () => {
   const [selectedButton, setSelectedButton] = useState<string>("stage");
-  const [showVideo, setShowVideo] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -28,6 +23,101 @@ const RegistrationForm: React.FC = () => {
     travelDistance: "",
     cv: null as File | null,
   });
+
+  // Define one step for react-joyride
+  const steps = [
+    {
+      target: ".step1",
+      content: "Vul je gegevens in.",
+    },
+  ];
+
+  const [runTour, setRunTour] = useState(false);
+
+  // Start the tour and fill in the form data incrementally when the component mounts
+  useEffect(() => {
+    setRunTour(true); // Set runTour to true to trigger the tour
+
+    // Incrementally fill the form data with delays
+    const timeoutIds: NodeJS.Timeout[] = [];
+
+    timeoutIds.push(
+      setTimeout(() => {
+        setFormData((prevData) => ({
+          ...prevData,
+          firstName: "John",
+        }));
+      }, 1000)
+    );
+
+    timeoutIds.push(
+      setTimeout(() => {
+        setFormData((prevData) => ({
+          ...prevData,
+          lastName: "Doe",
+        }));
+      }, 1500)
+    );
+
+    timeoutIds.push(
+      setTimeout(() => {
+        setFormData((prevData) => ({
+          ...prevData,
+          email: "john.doe@example.com",
+        }));
+      }, 2000)
+    );
+
+    timeoutIds.push(
+      setTimeout(() => {
+        setFormData((prevData) => ({
+          ...prevData,
+          password: "password123",
+        }));
+      }, 2500)
+    );
+
+    timeoutIds.push(
+      setTimeout(() => {
+        setFormData((prevData) => ({
+          ...prevData,
+          industry: "IT",
+        }));
+      }, 3000)
+    );
+
+    timeoutIds.push(
+      setTimeout(() => {
+        setFormData((prevData) => ({
+          ...prevData,
+          age: "30",
+        }));
+      }, 3500)
+    );
+
+    timeoutIds.push(
+      setTimeout(() => {
+        setFormData((prevData) => ({
+          ...prevData,
+          region: "Amsterdam",
+        }));
+      }, 4000)
+    );
+
+    timeoutIds.push(
+      setTimeout(() => {
+        setFormData((prevData) => ({
+          ...prevData,
+          travelDistance: "20",
+        }));
+      }, 4500)
+    );
+
+    return () => {
+      // Clean up timeouts when the component is unmounted
+      timeoutIds.forEach((timeoutId) => clearTimeout(timeoutId));
+    };
+  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -55,121 +145,87 @@ const RegistrationForm: React.FC = () => {
     }
   };
 
+  const handleButtonClick = (button: string) => {
+    setSelectedButton(button);
+  };
+
   return (
     <Container style={{ minHeight: "100vh", paddingBottom: "20px" }}>
-      <Row className="align-items-center mt-5 ">
-        <Col md={8}>
-          <h2>Registreer je hier</h2>
-        </Col>
-        <Col md={4} className="text-end">
-          <OverlayTrigger
-            placement="top"
-            overlay={<Tooltip>Bekijk instructievideo</Tooltip>}
-          >
-            <Button variant="dark" onClick={() => setShowVideo(true)}>
-              <FaQuestionCircle size={24} />
-            </Button>
-          </OverlayTrigger>
-        </Col>
-      </Row>
+      <Joyride
+        steps={steps}
+        run={runTour}
+        continuous={true}
+        showProgress={true}
+        showSkipButton={true}
+        scrollToFirstStep={true}
+      />
 
-      <Modal show={showVideo} onHide={() => setShowVideo(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Instructievideo</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <iframe
-            width="100%"
-            height="315"
-            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-            title="Instructievideo"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            style={{ maxWidth: "90%" }}
-          ></iframe>
-        </Modal.Body>
-      </Modal>
-
-      <Row className="mt-4">
-        <Col md={3}>
-          <p style={{ fontSize: "14px" }}>Waar zoek je naar?</p>
+      <Row>
+        <Col xs={12} className="mt-5 text-start">
+          <h2 className="step1">Registreer je hier</h2>
         </Col>
       </Row>
 
       <Row>
-        <Col md={6} className="">
-          <ButtonGroup className="d-flex w-100">
-            <Button
-              variant={selectedButton === "stage" ? "dark" : "light"}
-              onClick={() => setSelectedButton("stage")}
-              className="w-50"
-            >
-              STAGE
-            </Button>
-            <Button
-              variant={selectedButton === "werk" ? "dark" : "light"}
-              onClick={() => setSelectedButton("werk")}
-              className="w-50"
-            >
-              WERK
-            </Button>
-          </ButtonGroup>
-        </Col>
-      </Row>
-
-      <Row className="mt-4 ">
-        <Col md={6} className="mb-3">
+        <Col xs={12} md={6}>
           <Form.Group controlId="firstName">
             <Form.Label>Voornaam</Form.Label>
             <Form.Control
               type="text"
+              placeholder="Voornaam"
               name="firstName"
               value={formData.firstName}
               onChange={handleInputChange}
+              size="lg"
             />
           </Form.Group>
         </Col>
-        <Col md={6} className="mb-3">
+        <Col xs={12} md={6} className="step2">
           <Form.Group controlId="lastName">
             <Form.Label>Achternaam</Form.Label>
             <Form.Control
               type="text"
+              placeholder="Achternaam"
               name="lastName"
               value={formData.lastName}
               onChange={handleInputChange}
+              size="lg"
             />
           </Form.Group>
         </Col>
       </Row>
 
-      <Row className="mt-2">
-        <Col md={6} className="mb-3">
+      <Row className="mt-4 mb-3">
+        <Col xs={12} md={6} className="step3">
           <Form.Group controlId="email">
             <Form.Label>E-mail adres</Form.Label>
             <Form.Control
               type="email"
+              placeholder="E-mail adres"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
+              size="lg"
             />
           </Form.Group>
         </Col>
-        <Col md={6} className="mb-3">
+        <Col xs={12} md={6} className="step4">
           <Form.Group controlId="password">
             <Form.Label>Wachtwoord</Form.Label>
             <Form.Control
               type="password"
+              placeholder="Wachtwoord"
               name="password"
               value={formData.password}
               onChange={handleInputChange}
+              size="lg"
             />
           </Form.Group>
         </Col>
       </Row>
 
-      <Row className="mt-2">
-        <Col md={6} className="mb-3">
+      <Row className="mt-4 mb-3">
+        <Col xs={12} md={6} className="step5">
           <Form.Group controlId="industry">
             <Form.Label>In welke Branche zit je?</Form.Label>
             <Form.Control
@@ -177,6 +233,7 @@ const RegistrationForm: React.FC = () => {
               name="industry"
               value={formData.industry}
               onChange={handleInputChange}
+              size="lg"
             >
               <option>-- Kies een branche --</option>
               <option>IT</option>
@@ -186,27 +243,30 @@ const RegistrationForm: React.FC = () => {
             </Form.Control>
           </Form.Group>
         </Col>
-        <Col md={6} className="mb-3">
+        <Col xs={12} md={6} className="step6">
           <Form.Group controlId="age">
             <Form.Label>Leeftijd</Form.Label>
             <Form.Control
               type="number"
+              placeholder="Leeftijd"
               name="age"
               value={formData.age}
               onChange={handleInputChange}
+              size="lg"
             />
           </Form.Group>
         </Col>
       </Row>
 
-      <Row className="mt-2">
-        <Col md={6} className="mb-3">
+      <Row className="mt-4 mb-3">
+        <Col xs={12} md={6} className="step7">
           <Form.Group controlId="cv">
             <Form.Label>Upload je CV (PDF)</Form.Label>
             <Form.Control
               type="file"
               accept=".pdf"
               onChange={handleFileChange}
+              size="lg"
             />
             {formData.cv && (
               <small className="text-muted mt-1">
@@ -215,16 +275,20 @@ const RegistrationForm: React.FC = () => {
             )}
           </Form.Group>
         </Col>
-        <Col md={6} className="mb-3">
-          <RecordingComponent />
-        </Col>
       </Row>
 
-      <Row className="mt-3">
-        <Col md={12}>
+      <Row className="mt-4">
+        <Col xs={12} className="mb-4">
           <Link to="/gebruiker/dashboard">
-            <Button variant="dark" type="submit" className="w-100">
+            <Button variant="dark" type="submit" className="w-100" size="lg">
               Registreren
+            </Button>
+          </Link>
+        </Col>
+        <Col xs={12}>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <Button variant="dark" type="submit" className="w-100" size="lg">
+              Terug
             </Button>
           </Link>
         </Col>

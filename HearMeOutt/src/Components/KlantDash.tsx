@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Col, Container, Row, Dropdown, ButtonGroup } from "react-bootstrap";
+import {
+  Col,
+  Container,
+  Row,
+  Dropdown,
+  ButtonGroup,
+  Form,
+} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import MyNavbar from "./MyNavBar";
 import JobFilter from "./JobFilter";
@@ -17,10 +24,15 @@ interface JobPostingType {
 
 const KlantDash: React.FC = () => {
   const [sortOption, setSortOption] = useState<string>("Populariteit");
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const navigate = useNavigate();
 
   const handleJobClick = (id: number): void => {
     navigate(`/vacature/${id}`);
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
   };
 
   const jobPostings: JobPostingType[] = [
@@ -44,6 +56,13 @@ const KlantDash: React.FC = () => {
     },
   ];
 
+  const filteredJobPostings = jobPostings.filter(
+    (job) =>
+      job.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      job.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      job.location.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <Container fluid>
       <MyNavbar chosenRole="Klant" />
@@ -61,6 +80,17 @@ const KlantDash: React.FC = () => {
         {/* Job Listings & Sort */}
         <Col md={9} className="mt-3">
           <Row className="justify-content-between align-items-center mx-1">
+            {/* Search Bar */}
+            <Col xs={12} md="auto" className="mb-3">
+              <Form.Control
+                type="text"
+                placeholder="Zoek naar vacatures..."
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
+            </Col>
+
+            {/* Sort Dropdown */}
             <Col xs={12} md="auto" className="mb-3">
               <Dropdown as={ButtonGroup} className="w-100 w-md-auto">
                 <Dropdown.Toggle variant="light" className="w-100">
@@ -83,7 +113,7 @@ const KlantDash: React.FC = () => {
 
           {/* Job Listings */}
           <Row className="gy-3">
-            {jobPostings.map((job, index) => (
+            {filteredJobPostings.map((job, index) => (
               <Col key={index} xs={12} md={6}>
                 <JobPosting
                   title={job.title}
