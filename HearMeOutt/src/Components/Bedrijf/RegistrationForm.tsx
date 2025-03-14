@@ -9,17 +9,17 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const RegistrationForm: React.FC = () => {
-  const [selectedButton, setSelectedButton] = useState<string>("stage");
+const BedrijfRegistratieForm: React.FC = () => {
+  const [selectedButton, setSelectedButton] = useState<string>("small");
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    bedrijfsnaam: "",
     email: "",
-    password: "",
-    industry: "",
-    age: "",
-    region: "",
-    travelDistance: "",
+    wachtwoord: "",
+    bedrijfstype: "",
+    branche: "",
+    locatie: "",
+    functiecategorieen: "",
+    website: "",
   });
 
   const handleButtonClick = (button: string) => {
@@ -45,81 +45,72 @@ const RegistrationForm: React.FC = () => {
     <>
       <Container
         style={{
-          minHeight: "100vh", // Ensures the container takes full height of the page
-          paddingBottom: "20px", // Adds bottom padding for some space
+          minHeight: "100vh", // Zorgt ervoor dat de container de volledige hoogte van de pagina in beslag neemt
+          paddingBottom: "20px", // Voegt onderaan ruimte toe voor wat afstand
         }}
       >
         <Row>
-          <Col xs={12} className="mt-5  text-start">
-            <h2>Registreer je hier</h2>
+          <Col xs={12} className="mt-5 text-start">
+            <h2>Registreer je bedrijf hier</h2>
           </Col>
         </Row>
         <Row>
           <Col xs={12} md={3} className="mt-4">
-            <p style={{ fontSize: "14px" }}>Waar zoek je naar?</p>
+            <p style={{ fontSize: "14px" }}>Wat voor type bedrijf ben je?</p>
           </Col>
         </Row>
         <Row>
           <Col xs={12} md={6} className="">
-            <ButtonGroup aria-label="StageWerk" size="lg" className="p-1 w-100">
+            <ButtonGroup
+              aria-label="Bedrijfstype"
+              size="lg"
+              className="p-1 w-100"
+            >
               <Button
-                variant={selectedButton === "stage" ? "dark" : "white"}
-                onClick={() => handleButtonClick("stage")}
+                variant={selectedButton === "small" ? "dark" : "white"}
+                onClick={() => handleButtonClick("small")}
                 className="border w-100"
                 size="lg"
               >
-                STAGE
+                Klein Bedrijf
               </Button>
               <Button
-                variant={selectedButton === "werk" ? "dark" : "white"}
-                onClick={() => handleButtonClick("werk")}
+                variant={selectedButton === "medium" ? "dark" : "white"}
+                onClick={() => handleButtonClick("medium")}
                 className="border w-100"
                 size="lg"
               >
-                WERK
+                Midsize Bedrijf
               </Button>
               <Button
-                variant={selectedButton === "werk" ? "dark" : "white"}
-                onClick={() => handleButtonClick("werk")}
+                variant={selectedButton === "large" ? "dark" : "white"}
+                onClick={() => handleButtonClick("large")}
                 className="border w-100"
                 size="lg"
               >
-                BEIDE
+                Groot Bedrijf
               </Button>
             </ButtonGroup>
           </Col>
         </Row>
-        <Row className="mt-4 mb-3 ">
-          {/* Voornaam and Achternaam */}
-          <Col xs={12} md={6}>
-            <Form.Group controlId="firstName">
-              <Form.Label>Voornaam</Form.Label>
+        <Row className="mt-4 mb-3">
+          {/* Bedrijfsnaam */}
+          <Col xs={12}>
+            <Form.Group controlId="bedrijfsnaam">
+              <Form.Label>Bedrijfsnaam</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Voornaam"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleInputChange}
-                size="lg"
-              />
-            </Form.Group>
-          </Col>
-          <Col xs={12} md={6}>
-            <Form.Group controlId="lastName">
-              <Form.Label>Achternaam</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Achternaam"
-                name="lastName"
-                value={formData.lastName}
+                placeholder="Bedrijfsnaam"
+                name="bedrijfsnaam"
+                value={formData.bedrijfsnaam}
                 onChange={handleInputChange}
                 size="lg"
               />
             </Form.Group>
           </Col>
         </Row>
-        <Row className="mt-4  mb-3 ">
-          {/* Email and Wachtwoord */}
+        <Row className="mt-4 mb-3">
+          {/* E-mail en Wachtwoord */}
           <Col xs={12} md={6}>
             <Form.Group controlId="email">
               <Form.Label>E-mail adres</Form.Label>
@@ -134,30 +125,30 @@ const RegistrationForm: React.FC = () => {
             </Form.Group>
           </Col>
           <Col xs={12} md={6}>
-            <Form.Group controlId="password">
+            <Form.Group controlId="wachtwoord">
               <Form.Label>Wachtwoord</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Wachtwoord"
-                name="password"
-                value={formData.password}
+                name="wachtwoord"
+                value={formData.wachtwoord}
                 onChange={handleInputChange}
                 size="lg"
               />
             </Form.Group>
           </Col>
         </Row>
-        <Row className="mt-4  mb-3 ">
-          {/* Industry Dropdown */}
+        <Row className="mt-4 mb-3">
+          {/* Bedrijf Branche */}
           <Col xs={12} md={6}>
-            <Form.Group controlId="industry">
+            <Form.Group controlId="branche">
               <Form.Label>In welke Branche zit je?</Form.Label>
               <Form.Control
                 as="select"
-                name="industry"
-                value={formData.industry}
+                name="branche"
+                value={formData.branche}
                 onChange={(e) =>
-                  handleDropdownChange("industry", e.target.value)
+                  handleDropdownChange("branche", e.target.value)
                 }
                 size="lg"
               >
@@ -166,68 +157,65 @@ const RegistrationForm: React.FC = () => {
                 <option>Gezondheidszorg</option>
                 <option>Onderwijs</option>
                 <option>Financiën</option>
+                <option>Marketing</option>
               </Form.Control>
             </Form.Group>
           </Col>
-          {/* Age */}
+          {/* Locatie */}
           <Col xs={12} md={6}>
-            <Form.Group controlId="age">
-              <Form.Label>Leeftijd</Form.Label>
+            <Form.Group controlId="locatie">
+              <Form.Label>Waar is je bedrijf gevestigd?</Form.Label>
               <Form.Control
-                type="number"
-                placeholder="Leeftijd"
-                name="age"
-                value={formData.age}
+                type="text"
+                placeholder="Locatie"
+                name="locatie"
+                value={formData.locatie}
                 onChange={handleInputChange}
                 size="lg"
               />
             </Form.Group>
           </Col>
         </Row>
-        <Row className="mt-4  mb-3 ">
-          {/* Region Dropdown */}
-          <Col xs={12} md={6} className="mt-2">
-            <Form.Group controlId="region">
-              <Form.Label>In welke regio ben je gevestigd?</Form.Label>
-              <Form.Control
-                as="select"
-                name="region"
-                value={formData.region}
-                onChange={(e) => handleDropdownChange("region", e.target.value)}
-                size="lg"
-              >
-                <option>-- Kies een regio --</option>
-                <option>Amsterdam</option>
-                <option>Rotterdam</option>
-                <option>Utrecht</option>
-                <option>Den Haag</option>
-              </Form.Control>
-            </Form.Group>
-          </Col>
-          {/* Travel Distance Dropdown */}
+        <Row className="mt-4 mb-3">
+          {/* Functiecategorieën */}
           <Col xs={12} md={6}>
-            <Form.Group controlId="travelDistance">
-              <Form.Label>Hoe ver ben je bereid te reizen?</Form.Label>
+            <Form.Group controlId="functiecategorieen">
+              <Form.Label>Welke functiecategorieën bied je aan?</Form.Label>
               <Form.Control
                 as="select"
-                name="travelDistance"
-                value={formData.travelDistance}
+                name="functiecategorieen"
+                value={formData.functiecategorieen}
                 onChange={(e) =>
-                  handleDropdownChange("travelDistance", e.target.value)
+                  handleDropdownChange("functiecategorieen", e.target.value)
                 }
                 size="lg"
               >
-                <option>-- Kies een afstand --</option>
-                <option>5 km</option>
-                <option>10 km</option>
-                <option>20 km</option>
-                <option>50 km</option>
+                <option>-- Kies functiecategorieën --</option>
+                <option>Software Engineer</option>
+                <option>Data Scientist</option>
+                <option>HR</option>
+                <option>Marketing</option>
+                <option>Verkoop</option>
               </Form.Control>
+            </Form.Group>
+          </Col>
+          {/* Website */}
+          <Col xs={12} md={6}>
+            <Form.Group controlId="website">
+              <Form.Label>Website</Form.Label>
+              <Form.Control
+                type="url"
+                placeholder="Website"
+                name="website"
+                value={formData.website}
+                onChange={handleInputChange}
+                size="lg"
+              />
             </Form.Group>
           </Col>
         </Row>
 
-        <Row className="mt-4 " style={{ paddingTop: "120px" }}>
+        <Row className="mt-4" style={{ paddingTop: "120px" }}>
           <Col xs={12} className="mb-4">
             <Link to="/bedrijf/dashboard" style={{ textDecoration: "none" }}>
               <Button variant="dark" type="submit" className="w-100" size="lg">
@@ -248,4 +236,4 @@ const RegistrationForm: React.FC = () => {
   );
 };
 
-export default RegistrationForm;
+export default BedrijfRegistratieForm;
