@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": false, // Set to false if you don't want TypeScript to check your JavaScript files for type errors.
+    "jsx": "react" // Ensure that JSX is supported for JavaScript files.
+    // other compiler options
+  },
+  "include": [
+    "src/**/*",
+    "src/**/*.js" // Include JS files in the compilation.
+  ],
+  "exclude": ["node_modules"]
+}

@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import BerichtenBox from "./BerichtenBox";
 import SimpleChat from "./SimpleChat";
+import MessagesCustom from "./MessagesCustom";
+import MessagesCustomUser from "./MessagesCustomUser"; // Import the MessagesCustomUser component
 
 function BerichtenPage({ role }: { role: "Klant" | "Bedrijf" }) {
   const selectedUser = {
@@ -45,10 +47,11 @@ function BerichtenPage({ role }: { role: "Klant" | "Bedrijf" }) {
           {/* Chat Window */}
           <Card
             className="flex-grow-1 mt-3 p-3 shadow-sm"
-            style={{ height: "100%" }}
+            style={{ height: "calc(100% - 60px)" }} // Adjust height calculation here
           >
             <div className="h-100 d-flex flex-column align-items-center justify-content-center text-muted">
-              <SimpleChat role={role} />
+              {/* Conditional rendering based on the role */}
+              {role === "Klant" ? <MessagesCustomUser /> : <MessagesCustom />}
             </div>
           </Card>
         </Col>
