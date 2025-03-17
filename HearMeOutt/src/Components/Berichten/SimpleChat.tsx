@@ -37,12 +37,11 @@ const SimpleChat: React.FC = () => {
         <Col>
           <Card className="p-3">
             <div style={{ height: "50vh", overflowY: "auto" }}>
-              {messages.map((msg, index) => (
+              {/* {messages.map((msg, index) => (
                 
-              ))}
+              ))} */}
             </div>
             <div className="d-flex mt-2">
-
               <Button text="Send" onClick={handleSend} />
             </div>
           </Card>

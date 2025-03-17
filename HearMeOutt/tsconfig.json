@@ -6,7 +6,9 @@
     "moduleResolution": "bundler",
     "strict": true,
     "noEmit": true,
-    "allowJs": true
+    "allowJs": true,
+    "skipLibCheck": true
   },
+
   "include": ["src", "src/**/*.jsx", "vite.config.ts"]
 }
