@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { MessageBox, Input, Button } from "react-chat-elements";
+import { MessageBox, Button } from "react-chat-elements";
 import "react-chat-elements/dist/main.css";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import DatePicker from "react-datepicker";
