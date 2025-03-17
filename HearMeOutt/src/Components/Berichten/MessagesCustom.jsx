@@ -138,12 +138,12 @@ const MessagesCustom = () => {
               )}
             </div>
             <div className="d-flex mt-2">
-              <Input
+              {/* <Input
                 placeholder="Type a message..."
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
-              />
-              <Button text="Send" onClick={handleSend} />
+              /> */}
+              {/* <Button text="Send" onClick={handleSend} /> */}
             </div>
           </Card>
         </Col>
